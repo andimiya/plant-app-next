@@ -3,7 +3,14 @@ import { getAllPlantIds, getPostData } from "../../lib/plants";
 const { TabPane } = Tabs;
 const { Paragraph, Title } = Typography;
 
-const Plant: React.FC = ({ postData }) => (
+interface Post {
+  postData: {
+    title: string;
+    pid: string;
+  };
+}
+
+const Plant = ({ postData }: Post) => (
   <div>
     <Title>Plant Name: {postData.title}</Title>
     <Tabs>
@@ -28,7 +35,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   const postData = getPostData(params.pid);
   console.log(postData, "post data");
   return {
