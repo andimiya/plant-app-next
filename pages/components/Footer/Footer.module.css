@@ -1,0 +1,26 @@
+.container {
+  margin-top: 2rem;
+  background-color: var(--dark-gray-background);
+  padding: 2rem 0;
+
+  /* // full width */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  /* Pinned to bottom */
+  position: fixed;
+  bottom: 0;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon {
+  color: var(--teal);
+}

@@ -1,15 +1,22 @@
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import Head from "next/head";
 import React from "react";
+import type { AppProps } from "next/app";
+import { ConfigProvider, theme } from "antd";
+import Layout from "./components/Layout/Layout";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
+  const { darkAlgorithm, compactAlgorithm } = theme;
   return (
-    <React.Fragment>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <Component {...pageProps} />;
-    </React.Fragment>
+    <ConfigProvider
+      theme={{
+        algorithm: [darkAlgorithm, compactAlgorithm],
+      }}
+    >
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ConfigProvider>
   );
 }
+export default App;

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: { domains: ["placekitten.com", "kit.fontawesome.com"] },
 };
 console.log(process.env.NODE_ENV, "process envvvv");
 
