@@ -24,7 +24,7 @@ export default async function imageUpload(base64: string) {
   // This won't be needed if they're uploading their avatar, hence the filename, userAvatar.js.
 
   const params = {
-    Bucket: process.env.NEXT_PUBLIC_S3_BUCKET,
+    Bucket: process.env.NEXT_PUBLIC_S3_BUCKET || "",
     Key: `${randomId}.${type}`, // type is not required
     Body: base64Data,
     ACL: "public-read",
@@ -37,6 +37,7 @@ export default async function imageUpload(base64: string) {
   let location = "";
   let key = "";
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     const { Location, Key } = await s3.upload(params).promise();
     location = Location;
     key = Key;

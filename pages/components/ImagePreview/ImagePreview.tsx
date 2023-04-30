@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // import "./styles/imagePreview.css";
 
-export const ImagePreview = ({ dataUri, isFullscreen }) => {
+export const ImagePreview = ({ dataUri, isFullscreen }: any) => {
   let classNameFullscreen = isFullscreen ? "demo-image-preview-fullscreen" : "";
 
   return (
