@@ -1,5 +1,6 @@
 import { Tabs, Typography } from "antd";
 import { getAllPlantIds, getPostData } from "../../lib/plants";
+import Gallery from "../components/Gallery/Gallery";
 const { TabPane } = Tabs;
 const { Paragraph, Title } = Typography;
 
@@ -18,7 +19,7 @@ const Plant = ({ postData }: Post) => (
         <Paragraph>ID: {postData.pid}</Paragraph>
       </TabPane>
       <TabPane tab="Gallery" key="2">
-        Gallery
+        <Gallery />
       </TabPane>
       <TabPane tab="Water/Fertilizer Log" key="3">
         Watering and fertilizing log
