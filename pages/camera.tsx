@@ -20,7 +20,7 @@ export default function CameraPage() {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(() => {
         setDataUri("");
       });
   };
@@ -30,8 +30,6 @@ export default function CameraPage() {
     const imageUrl = await imageUpload(dataUri);
     // @ts-ignore
     setImageUrl(imageUrl);
-
-    console.log(imageUrl, "image");
   }
   return (
     <div>

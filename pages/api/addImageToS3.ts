@@ -39,8 +39,6 @@ export default async function imageUpload(base64: string) {
   try {
     const { Location } = await s3.upload(params).promise();
     location = Location;
-    console.log(location, "location");
-    // key = Key;
     return location;
   } catch (error) {
     return error;
