@@ -5,15 +5,18 @@ import { useRouter } from "next/router";
 const { TabPane } = Tabs;
 const { Paragraph, Title } = Typography;
 
-interface Post {
-  postData: {
-    title: string;
-    pid: string;
-    imageData: [];
-  };
+interface PostData {
+  title: string;
+  pid: string;
+  images: [];
 }
 
-const Plant = ({ postData }: Post) => {
+const Plant = ({ postData }: any) => {
+  let parsedData: PostData | null = null;
+  if (postData) {
+    parsedData = JSON.parse(postData);
+  }
+
   const router = useRouter();
 
   if (router.isFallback) {
@@ -28,7 +31,7 @@ const Plant = ({ postData }: Post) => {
           <Paragraph>ID: {postData.pid}</Paragraph>
         </TabPane>
         <TabPane tab="Gallery" key="2">
-          <Gallery images={postData} />
+          {parsedData && <Gallery images={parsedData?.images} />}
         </TabPane>
         <TabPane tab="Water/Fertilizer Log" key="3">
           Watering and fertilizing log
