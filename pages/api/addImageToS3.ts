@@ -35,16 +35,14 @@ export default async function imageUpload(base64: string) {
   // The upload() is used instead of putObject() as we'd need the location url and assign that to our user profile/database
   // see: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property
   let location = "";
-  let key = "";
+  // let key = "";
   try {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    const { Location, Key } = await s3.upload(params).promise();
+    const { Location } = await s3.upload(params).promise();
     location = Location;
-    key = Key;
+    console.log(location, "location");
+    // key = Key;
+    return location;
   } catch (error) {
-    console.log(error, "Error uploading to S3");
+    return error;
   }
-
-  console.log(location, key);
-  return location;
 }

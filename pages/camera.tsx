@@ -10,7 +10,6 @@ export default function CameraPage() {
   const [imageUrl, setImageUrl] = useState("");
 
   const handleClick = async (imageUrl: string) => {
-    console.log(imageUrl, "eee");
     const id = "643385e7bd4e67b4581468fa";
     const url = `/api/plants?id=${id}`;
     await fetch(url, {
@@ -22,16 +21,14 @@ export default function CameraPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "data");
         setDataUri("");
-        // setData(data);
-        // setLoading(false);
       });
   };
 
   async function handleTakePhoto(dataUri: any) {
     setDataUri(dataUri);
     const imageUrl = await imageUpload(dataUri);
+    // @ts-ignore
     setImageUrl(imageUrl);
 
     console.log(imageUrl, "image");

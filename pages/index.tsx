@@ -1,8 +1,7 @@
-import { Card, Checkbox, Typography } from "antd";
-import Nav from "./components/Header/Header";
+import { Card, Typography } from "antd";
 import Image from "next/image";
 const { Meta } = Card;
-const { Paragraph, Title } = Typography;
+const { Title } = Typography;
 import css from "../styles/Home.module.css";
 import Link from "next/link";
 

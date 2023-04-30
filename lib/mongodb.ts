@@ -1,13 +1,10 @@
+// @ts-nocheck
 import { MongoClient } from "mongodb";
 const uri = process.env.MONGODB_URI as string; // your mongodb connection string
 const options = {};
 
 let client;
 let clientPromise: Promise<any>;
-
-declare global {
-  var _mongoClientPromise: Promise<any>;
-}
 
 if (!process.env.MONGODB_URI) {
   throw new Error("Please add your Mongo URI to .env.local");
