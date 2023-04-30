@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const dbName = process.env.DB_NAME;
   const client = await clientPromise;
   const db = client.db(dbName);
-  const { id } = req.query;
+  const { id, title } = req.query;
 
   switch (method) {
     case "POST":
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       break;
     case "GET":
       const get = await db.collection(PLANT_TABLE).findOne({
-        _id: new ObjectId(id),
+        title,
       });
       res.json(get);
       break;

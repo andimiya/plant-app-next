@@ -75,10 +75,7 @@ export default function Nav() {
         <link href="images/icon-72x72.png" rel="apple-touch-icon" sizes="72x72" /> */}
         {/*  Manifest.json  */}
         <link href="manifest.json" rel="manifest" />
-        <script
-          async
-          src="https://kit.fontawesome.com/c0c7010aa1.js"
-        ></script>{" "}
+        <script async src="https://kit.fontawesome.com/c0c7010aa1.js"></script>
       </Head>
     </nav>
   );

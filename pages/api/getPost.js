@@ -12,6 +12,7 @@ export default async (req, res) => {
     const post = await db.collection(PLANT_TABLE).findOne({
       title,
     });
+    console.log(post, "posttt");
 
     res.json(post);
   } catch (e) {
