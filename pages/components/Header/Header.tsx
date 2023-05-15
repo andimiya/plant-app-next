@@ -14,7 +14,7 @@ export default function Nav() {
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
         {/* Android */}
-        <meta name="theme-color" content="red" />
+        <meta name="theme-color" content="black" />
         <meta name="mobile-web-app-capable" content="yes" />
         {/* iOS */}
         <meta name="apple-mobile-web-app-title" content="Application Title" />
