@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Image from "next/image";
 
 // import "./styles/imagePreview.css";
 
@@ -8,7 +9,7 @@ export const ImagePreview = ({ dataUri, isFullscreen }: any) => {
 
   return (
     <div className={"demo-image-preview " + classNameFullscreen}>
-      <img src={dataUri} />
+      <Image src={dataUri} alt="demo image" />
     </div>
   );
 };
