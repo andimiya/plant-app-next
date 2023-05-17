@@ -45,9 +45,9 @@ export default function Nav() {
         {/* Orientation  */}
         <meta name="screen-orientation" content="portrait" />
         {/*  Main Link Tags  */}
-        <link href="favicon-16.png" rel="icon" type="image/png" sizes="16x16" />
+        {/* <link href="favicon-16.png" rel="icon" type="image/png" sizes="16x16" />
         <link href="favicon-32.png" rel="icon" type="image/png" sizes="32x32" />
-        <link href="favicon-48.png" rel="icon" type="image/png" sizes="48x48" />
+        <link href="favicon-48.png" rel="icon" type="image/png" sizes="48x48" /> */}
         {/*  iOS  */}
         <link href="touch-icon-iphone.png" rel="apple-touch-icon" />
         <link href="touch-icon-ipad.png" rel="apple-touch-icon" sizes="76x76" />
@@ -69,8 +69,8 @@ export default function Nav() {
         {/* Pinned Tab */}
         <link href="path/to/icon.svg" rel="mask-icon" sizes="any" color="red" />
         {/*  Android  */}
-        <link href="icons/icon-192x192.png" rel="icon" sizes="192x192" />
-        <link href="icons/icon-128x128.png" rel="icon" sizes="128x128" />
+        <link href="icon-192x192.png" rel="icon" sizes="192x192" />
+        {/* <link href="icon-128x128.png" rel="icon" sizes="128x128" /> */}
         {/*  Others */}
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
         {/*  UC Browser  */}
@@ -85,7 +85,7 @@ export default function Nav() {
           sizes="72x72"
         />
         {/*  Manifest.json  */}
-        <link rel="manifest" href="../../public/manifest.json" />
+        <link rel="manifest" href="../../manifest.json" />
         {/* <script async src="https://kit.fontawesome.com/c0c7010aa1.js"></script> */}
       </Head>
     </nav>
