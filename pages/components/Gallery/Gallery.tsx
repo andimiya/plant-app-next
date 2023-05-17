@@ -9,7 +9,15 @@ export default function Gallery(props: any) {
         {props.images &&
           props.images.map((image: any, i: number) => (
             <Col key={i} span={8}>
-              <Image key={i} alt="image" className={css.image} src={image} />
+              <Image
+                loader={() => image}
+                key={i}
+                alt="image"
+                className={css.image}
+                src={image}
+                width={50}
+                height={50}
+              />
             </Col>
           ))}
       </Row>

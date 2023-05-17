@@ -3,7 +3,21 @@ const runtimeCaching = require("next-pwa/cache");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: { domains: ["placekitten.com", "kit.fontawesome.com"] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "plant-app-andi-images.s3.us-west-1.amazonaws.com",
+        port: "",
+        pathname: "/",
+      },
+    ],
+    domains: [
+      "placekitten.com",
+      "kit.fontawesome.com",
+      // "plant-app-andi-images.s3.us-west-1.amazonaws.com",
+    ],
+  },
 };
 
 const withPWA = require("next-pwa")({

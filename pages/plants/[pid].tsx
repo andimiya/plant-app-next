@@ -1,5 +1,5 @@
 import { Tabs, TabsProps, Typography } from "antd";
-import { getAllPlantIds, getPostData } from "../../lib/plants";
+import { getPostData } from "../../lib/plants";
 import Gallery from "../components/Gallery/Gallery";
 const { Paragraph, Title } = Typography;
 
@@ -35,9 +35,9 @@ const Plant = ({ postData }: any) => {
     },
   ];
 
-  parsedData ? (
+  return parsedData ? (
     <div>
-      <Title>Plant Name: {postData.title}</Title>
+      <Title>Plant Name: {parsedData.title}</Title>
       <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
     </div>
   ) : (
@@ -46,15 +46,14 @@ const Plant = ({ postData }: any) => {
 };
 
 export async function getStaticPaths() {
-  const paths = getAllPlantIds();
   return {
-    paths,
+    paths: [{ params: { pid: "tomato" } }],
     fallback: true,
   };
 }
 
-export async function getStaticProps({}: any) {
-  const postData = await getPostData();
+export async function getStaticProps(context: any) {
+  const postData = await getPostData(context.params.pid);
   return {
     props: {
       postData: JSON.stringify(postData),
