@@ -1,18 +1,18 @@
 import { Tabs, TabsProps, Typography } from "antd";
-import { getPostData } from "../../lib/plants";
+import { getPlant } from "../../lib/plants";
 import Gallery from "../components/Gallery/Gallery";
 const { Paragraph, Title } = Typography;
 
-interface PostData {
+interface IPlantData {
   title: string;
   pid: string;
   images: [];
 }
 
-const Plant = ({ postData }: any) => {
-  let parsedData: PostData | null = null;
-  if (postData) {
-    parsedData = JSON.parse(postData);
+const Plant = ({ plantData }: any) => {
+  let parsedData: IPlantData | null = null;
+  if (plantData) {
+    parsedData = JSON.parse(plantData);
   }
 
   const onChange = () => {};
@@ -53,7 +53,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-  const postData = await getPostData(context.params.pid);
+  const postData = await getPlant(context.params.pid);
   return {
     props: {
       postData: JSON.stringify(postData),
