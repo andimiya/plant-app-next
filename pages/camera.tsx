@@ -11,7 +11,7 @@ export default function CameraPage() {
 
   const handleClick = async (imageUrl: string) => {
     const id = "643385e7bd4e67b4581468fa";
-    const url = `/api/plants?id=${id}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
     await fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
