@@ -1,19 +1,32 @@
+import { useEffect, useState } from "react";
 import { Tabs, TabsProps, Typography } from "antd";
-import { getPlant } from "../../lib/plants";
 import Gallery from "../components/Gallery/Gallery";
+import { useRouter } from "next/router";
 const { Paragraph, Title } = Typography;
 
-interface IPlantData {
+export interface IPlantData {
+  _id: string;
   title: string;
-  pid: string;
-  images: [];
+  images: string[];
 }
 
-const Plant = ({ plantData }: any) => {
-  let parsedData: IPlantData | null = null;
-  if (plantData) {
-    parsedData = JSON.parse(plantData);
-  }
+const Plant = () => {
+  const [plantData, setPlantData] = useState<IPlantData>();
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const { asPath } = useRouter();
+
+  const title = asPath.replace("/plants/", "");
+
+  useEffect(() => {
+    setLoading(true);
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?title=${title}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setPlantData(data);
+        setLoading(false);
+      });
+  }, [title]);
 
   const onChange = () => {};
 
@@ -21,12 +34,12 @@ const Plant = ({ plantData }: any) => {
     {
       key: "1",
       label: `Plant Details`,
-      children: <Paragraph>Plant name: {parsedData?.title}</Paragraph>,
+      children: <Paragraph>Plant name: {plantData?.title}</Paragraph>,
     },
     {
       key: "2",
       label: `Gallery`,
-      children: <Gallery images={parsedData?.images} />,
+      children: <Gallery images={plantData?.images} />,
     },
     {
       key: "3",
@@ -35,30 +48,15 @@ const Plant = ({ plantData }: any) => {
     },
   ];
 
-  return parsedData ? (
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  return (
     <div>
-      <Title>Plant Name: {parsedData.title}</Title>
+      <Title>Plant Name: {plantData?.title}</Title>
       <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
     </div>
-  ) : (
-    <h1>Loading...</h1>
   );
 };
-
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { pid: "tomato" } }],
-    fallback: true,
-  };
-}
-
-export async function getStaticProps(context: any) {
-  const postData = await getPlant(context.params.pid);
-  return {
-    props: {
-      postData: JSON.stringify(postData),
-    },
-  };
-}
 
 export default Plant;
