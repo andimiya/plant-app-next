@@ -1,6 +1,6 @@
 :root {
   --black: #141429;
-  --white: #dce0e7;
+  --white: #e0d6d3;
   --dark-gray-background: #242639;
   --rust: #b95c17;
   --teal: #1e8b99;
@@ -15,6 +15,4 @@ body {
   overflow-x: hidden;
   background: var(--black);
   color: var(--white);
-  /* padding: 0;
-  margin: 0; */
 }

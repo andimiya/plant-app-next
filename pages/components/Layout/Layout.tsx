@@ -18,7 +18,7 @@ const lato = Lato({
 const Layout = ({ children }: Props) => (
   <main className={`${lato.className} ${css.main}`}>
     <Nav />
-    <main>{children}</main>
+    <div className={css.contents}>{children}</div>
     <Footer />
   </main>
 );

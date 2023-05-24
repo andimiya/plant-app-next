@@ -9,7 +9,7 @@ export default function Nav() {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
-          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=1.0,"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=1.0"
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
@@ -36,8 +36,6 @@ export default function Nav() {
         <meta name="browsermode" content="application" />
         {/* Disable night mode for this page  */}
         <meta name="nightmode" content="enable/disable" />
-        {/* Fitscreen  */}
-        {/* <meta name="viewport" content="uc-fitscreen=yes" /> */}
         {/* Layout mode */}
         <meta name="layoutmode" content="fitscreen/standard" />
         {/* imagemode - show image even in text only mode  */}
@@ -72,7 +70,7 @@ export default function Nav() {
         <link href="icon-192x192.png" rel="icon" sizes="192x192" />
         {/* <link href="icon-128x128.png" rel="icon" sizes="128x128" /> */}
         {/*  Others */}
-        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="favicon.ico" rel="shortcut-icon" type="image/x-icon" />
         {/*  UC Browser  */}
         <link
           href="images/icon-52x52.png"
