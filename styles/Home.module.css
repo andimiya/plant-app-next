@@ -24,9 +24,9 @@
 
 .iconButton {
   flex: 1 1 100%;
-  /* background-color: lightgray; */
+  background-color: #1d1e2a;
   border-radius: 0.2rem;
-  border: 1px solid var(--white);
+  border: 1px solid gray;
   box-sizing: border-box;
 }
 

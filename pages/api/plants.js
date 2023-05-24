@@ -25,12 +25,21 @@ export default async function handler(req, res) {
       res.json(get);
       break;
     case "PUT":
-      const { imageUrl } = req.body;
+      var objForUpdate = {};
+      if (req.body.imageUrl) {
+        objForUpdate.images = req.body.imageUrl;
+      }
+      if (req.body.watering) {
+        objForUpdate.watering = req.body.watering;
+      }
+      if (req.body.fertilizing) {
+        objForUpdate.fertilizing = req.body.fertilizing;
+      }
       const put = await db.collection(PLANT_TABLE).updateOne(
         {
           _id: new ObjectId(id),
         },
-        { $push: { images: imageUrl } }
+        { $push: objForUpdate }
       );
       res.json(put);
       break;

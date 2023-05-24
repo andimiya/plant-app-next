@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
-import { Card, Typography } from "antd";
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-const { Meta } = Card;
-const { Title } = Typography;
-import { IPlantData } from "./plants/[pid]";
+import { useEffect, useState } from "react";
+import { Card, Typography } from "antd";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling, faDroplet } from "@fortawesome/free-solid-svg-icons";
+import { IPlantData } from "./plants/[pid]";
+import { fertilizePlant, getAllPlants, waterPlant } from "../lib/plants";
+const { Meta } = Card;
+const { Title } = Typography;
 
 import css from "../styles/Home.module.css";
 
@@ -14,20 +17,30 @@ const Home = () => {
   const [allPlantsData, setAllPlantsData] = useState<IPlantData[]>([]);
   const [isLoading, setLoading] = useState(false);
 
+  async function fetchAllPlants() {
+    const data = await getAllPlants();
+    setAllPlantsData(data);
+  }
+
   useEffect(() => {
     setLoading(true);
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/allPlants`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setAllPlantsData(data);
-        setLoading(false);
-      });
+    fetchAllPlants();
+    setLoading(false);
   }, []);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
+
+  const water = async (id: string) => {
+    await waterPlant(id);
+    fetchAllPlants();
+  };
+
+  const fertilize = async (id: string) => {
+    await fertilizePlant(id);
+    fetchAllPlants();
+  };
 
   return (
     <div>
@@ -41,25 +54,33 @@ const Home = () => {
           return (
             <div key={plant._id} className={css.cardRow}>
               <div className={css.iconsContainer}>
-                <Link href="" className={css.iconButton}>
+                <div
+                  // href=""
+                  onClick={() => water(plant._id)}
+                  className={css.iconButton}
+                >
                   <FontAwesomeIcon
                     icon={faDroplet}
                     className={`${css.icon} ${css.droplet}`}
                   />
-                </Link>
-                <Link href="" className={css.iconButton}>
+                </div>
+                <div
+                  // href=""
+                  onClick={() => fertilize(plant._id)}
+                  className={css.iconButton}
+                >
                   <FontAwesomeIcon
                     icon={faSeedling}
                     className={`${css.icon} ${css.fertilizer}`}
                   />
-                </Link>
+                </div>
               </div>
               <div className={css.cardImageContainer}>
                 <Link href={`/plants/${plant.title}`} className={css.link}>
                   <Image
                     src={image}
                     loader={() => image}
-                    alt="kitten"
+                    alt={plant.title ? plant.title : "Default image"}
                     width={60}
                     height={60}
                     className={css.tileImage}
@@ -70,11 +91,19 @@ const Home = () => {
               <div className={css.cardTextContainer}>
                 <Meta title={plant.title} className={css.plantName} />
                 <p>
-                  <span className={css.droplet}>Last watered: Wed Apr 9</span>
+                  {plant.watering && (
+                    <span className={css.droplet}>
+                      Last watered:{" "}
+                      {moment(plant?.watering[0]).format("ddd MMM D A")}
+                    </span>
+                  )}
                   <br />
-                  <span className={css.fertilizer}>
-                    Last fertilized: Wed Apr 9
-                  </span>
+                  {plant.fertilizing && (
+                    <span className={css.fertilizer}>
+                      Last fertilized:{" "}
+                      {moment(plant?.fertilizing[0]).format("ddd MMM D A")}
+                    </span>
+                  )}
                 </p>
               </div>
             </div>

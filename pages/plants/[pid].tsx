@@ -8,6 +8,8 @@ export interface IPlantData {
   _id: string;
   title: string;
   images: string[];
+  watering: number[];
+  fertilizing: number[];
 }
 
 const Plant = () => {
