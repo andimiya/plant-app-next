@@ -3,14 +3,14 @@ import "react-html5-camera-photo/build/css/index.css";
 import imageUpload from "./api/addImageToS3";
 import { useState } from "react";
 import ImagePreview from "./components/ImagePreview/ImagePreview";
-import { Button } from "antd";
+import { Dropdown } from "./components/Dropdown/Dropdown";
 
 export default function CameraPage() {
   const [dataUri, setDataUri] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const handleClick = async (imageUrl: string) => {
-    const id = "643385e7bd4e67b4581468fa";
+  const handleClick = async (plantId: number) => {
+    const id = plantId;
     const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
     await fetch(url, {
       method: "PUT",
@@ -36,11 +36,10 @@ export default function CameraPage() {
       <h1>Take a Picture</h1>
       {dataUri ? (
         <>
-          <Button type="primary">
-            <a onClick={() => handleClick(imageUrl)}>
-              Save image to Astro Plant
-            </a>
-          </Button>
+          <Dropdown
+            handleClick={handleClick}
+            // imageUrl={imageUrl}
+          />
           <ImagePreview dataUri={dataUri} />
         </>
       ) : (

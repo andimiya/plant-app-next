@@ -17,6 +17,7 @@ export default function Gallery(props: any) {
                 src={image}
                 width={50}
                 height={50}
+                unoptimized
               />
             </Col>
           ))}

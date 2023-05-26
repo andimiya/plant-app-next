@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import { Tabs, TabsProps, Typography } from "antd";
 import Gallery from "../components/Gallery/Gallery";
-import { useRouter } from "next/router";
+import { WaterFertilizerLog } from "../components/WaterFertilizerLog/WaterFertilizerLog";
+import { getPlant } from "@/lib/plants";
 const { Paragraph, Title } = Typography;
 
 export interface IPlantData {
@@ -12,26 +12,12 @@ export interface IPlantData {
   fertilizing: number[];
 }
 
-const Plant = () => {
-  const [plantData, setPlantData] = useState<IPlantData>();
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const { asPath } = useRouter();
+export interface IProps {
+  plantData: IPlantData;
+}
 
-  const title = asPath.replace("/plants/", "");
-
-  useEffect(() => {
-    setLoading(true);
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?title=${title}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setPlantData(data);
-        setLoading(false);
-      });
-  }, [title]);
-
+const Plant = ({ plantData }: IProps) => {
   const onChange = () => {};
-
   const items: TabsProps["items"] = [
     {
       key: "1",
@@ -46,19 +32,24 @@ const Plant = () => {
     {
       key: "3",
       label: `Water/Fertilizer Log`,
-      children: `Content of Tab Pane 3`,
+      children: <WaterFertilizerLog plantData={plantData} />,
     },
   ];
-
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <div>
       <Title>Plant Name: {plantData?.title}</Title>
       <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
     </div>
   );
+};
+
+export const getServerSideProps = async ({ params }: any) => {
+  const jsonData = await getPlant(params.pid);
+  return {
+    props: {
+      plantData: jsonData,
+    },
+  };
 };
 
 export default Plant;

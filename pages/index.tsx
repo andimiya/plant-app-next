@@ -1,9 +1,7 @@
-import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Card, Typography } from "antd";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling, faDroplet } from "@fortawesome/free-solid-svg-icons";
 import { IPlantData } from "./plants/[pid]";
@@ -12,6 +10,7 @@ const { Meta } = Card;
 const { Title } = Typography;
 
 import css from "../styles/Home.module.css";
+import { formatDate } from "@/lib/utils";
 
 const Home = () => {
   const [allPlantsData, setAllPlantsData] = useState<IPlantData[]>([]);
@@ -55,7 +54,6 @@ const Home = () => {
             <div key={plant._id} className={css.cardRow}>
               <div className={css.iconsContainer}>
                 <div
-                  // href=""
                   onClick={() => water(plant._id)}
                   className={css.iconButton}
                 >
@@ -65,7 +63,6 @@ const Home = () => {
                   />
                 </div>
                 <div
-                  // href=""
                   onClick={() => fertilize(plant._id)}
                   className={css.iconButton}
                 >
@@ -93,15 +90,13 @@ const Home = () => {
                 <p>
                   {plant.watering && (
                     <span className={css.droplet}>
-                      Last watered:{" "}
-                      {moment(plant?.watering[0]).format("ddd MMM D A")}
+                      Last watered: {formatDate(plant?.watering[0])}
                     </span>
                   )}
                   <br />
                   {plant.fertilizing && (
                     <span className={css.fertilizer}>
-                      Last fertilized:{" "}
-                      {moment(plant?.fertilizing[0]).format("ddd MMM D A")}
+                      Last fertilized: {formatDate(plant?.fertilizing[0])}
                     </span>
                   )}
                 </p>

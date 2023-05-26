@@ -1,0 +1,8 @@
+.columnContainer {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.column {
+  flex: 50%;
+}

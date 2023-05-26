@@ -7,6 +7,15 @@ export const getAllPlants = async () => {
     });
 };
 
+export const getPlant = async (title: string) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?title=${title}`;
+  return fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
+};
+
 export const waterPlant = async (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
   return fetch(url, {
