@@ -1,6 +1,6 @@
 import { Tabs, TabsProps, Typography } from "antd";
 import Gallery from "../components/Gallery/Gallery";
-import { WaterFertilizerLog } from "../components/WaterFertilizerLog/WaterFertilizerLog";
+import WaterFertilizerLog from "../components/WaterFertilizerLog/WaterFertilizerLog";
 import { getPlant } from "@/lib/plants";
 const { Paragraph, Title } = Typography;
 

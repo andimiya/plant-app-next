@@ -3,7 +3,7 @@ import { Select } from "antd";
 import { IPlantData } from "@/pages/plants/[pid]";
 import { getAllPlants } from "@/lib/plants";
 
-export const Dropdown = ({ handleClick }: any) => {
+const Dropdown = ({ handleClick }: any) => {
   const [allPlantsData, setAllPlantsData] = useState<IPlantData[]>([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -48,3 +48,5 @@ export const Dropdown = ({ handleClick }: any) => {
     />
   );
 };
+
+export default Dropdown;

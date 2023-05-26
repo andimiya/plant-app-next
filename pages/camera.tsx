@@ -3,7 +3,7 @@ import "react-html5-camera-photo/build/css/index.css";
 import imageUpload from "./api/addImageToS3";
 import { useState } from "react";
 import ImagePreview from "./components/ImagePreview/ImagePreview";
-import { Dropdown } from "./components/Dropdown/Dropdown";
+import Dropdown from "./components/Dropdown/Dropdown";
 
 export default function CameraPage() {
   const [dataUri, setDataUri] = useState("");
@@ -36,10 +36,7 @@ export default function CameraPage() {
       <h1>Take a Picture</h1>
       {dataUri ? (
         <>
-          <Dropdown
-            handleClick={handleClick}
-            // imageUrl={imageUrl}
-          />
+          <Dropdown handleClick={handleClick} />
           <ImagePreview dataUri={dataUri} />
         </>
       ) : (

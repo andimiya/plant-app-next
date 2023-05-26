@@ -7,16 +7,16 @@ interface IProps {
   plantData: IPlantData;
 }
 
-export const WaterFertilizerLog = (props: IProps) => {
+const WaterFertilizerLog = (props: IProps) => {
   let waterSort;
-  if (props.plantData.watering.length) {
+  if (props?.plantData?.watering?.length) {
     waterSort = props.plantData?.watering?.sort((a, b) => {
       return b - a;
     });
   }
 
   let fertilizerSort;
-  if (props.plantData.fertilizing.length) {
+  if (props?.plantData?.fertilizing?.length) {
     fertilizerSort = props.plantData?.fertilizing?.sort((a, b) => {
       return b - a;
     });
@@ -47,3 +47,5 @@ export const WaterFertilizerLog = (props: IProps) => {
     </div>
   );
 };
+
+export default WaterFertilizerLog;
