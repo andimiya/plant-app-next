@@ -5,6 +5,8 @@ import { useState } from "react";
 import ImagePreview from "./components/ImagePreview/ImagePreview";
 import Dropdown from "./components/Dropdown/Dropdown";
 
+import css from "./Camera.module.css";
+
 export default function CameraPage() {
   const [dataUri, setDataUri] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -37,7 +39,9 @@ export default function CameraPage() {
       {dataUri ? (
         <>
           <Dropdown handleClick={handleClick} />
-          <ImagePreview dataUri={dataUri} />
+          <div className={css.imagePreview}>
+            <ImagePreview dataUri={dataUri} />
+          </div>
         </>
       ) : (
         <Camera

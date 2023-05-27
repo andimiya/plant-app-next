@@ -40,7 +40,8 @@ const Dropdown = ({ handleClick }: any) => {
   return (
     <Select
       defaultValue="Save image to..."
-      style={{ width: 300 }}
+      size="large"
+      style={{ width: "300px" }}
       options={plantsArray}
       onSelect={(value) => {
         handleClick(value);
