@@ -1,8 +1,8 @@
-import { Tabs, TabsProps, Typography } from "antd";
+import { Tabs, TabsProps } from "antd";
 import Gallery from "../components/Gallery/Gallery";
 import WaterFertilizerLog from "../components/WaterFertilizerLog/WaterFertilizerLog";
 import { getPlant } from "@/lib/plants";
-const { Paragraph, Title } = Typography;
+import { Header } from "semantic-ui-react";
 
 export interface IPlantData {
   _id: string;
@@ -22,7 +22,7 @@ const Plant = ({ plantData }: IProps) => {
     {
       key: "1",
       label: `Plant Details`,
-      children: <Paragraph>Plant name: {plantData?.title}</Paragraph>,
+      children: <p>Plant name: {plantData?.title}</p>,
     },
     {
       key: "2",
@@ -37,8 +37,16 @@ const Plant = ({ plantData }: IProps) => {
   ];
   return (
     <div>
-      <Title>Plant Name: {plantData?.title}</Title>
-      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+      <Header as="h1" size="huge">
+        {plantData?.title}
+      </Header>
+      <div className="ui hidden divider"></div>
+      <Tabs
+        defaultActiveKey="1"
+        items={items}
+        onChange={onChange}
+        style={{ fontSize: "1.5rem" }}
+      />
     </div>
   );
 };

@@ -11,6 +11,7 @@
     "no-unused-vars": 2,
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "@next/next/no-img-element": "off"
   }
 }

@@ -5,6 +5,7 @@ import Image from "next/image";
 export default function Gallery(props: any) {
   return (
     <>
+      <div className="ui hidden divider"></div>
       <Row gutter={[16, 16]}>
         {props.images &&
           props.images.map((image: any, i: number) => (

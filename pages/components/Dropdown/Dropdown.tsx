@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Select } from "antd";
+// import { Select } from "antd";
+import { Dropdown } from "semantic-ui-react";
+
 import { IPlantData } from "@/pages/plants/[pid]";
+
 import { getAllPlants } from "@/lib/plants";
 
-const Dropdown = ({ handleClick }: any) => {
+const DropdownComponent = ({}: any) => {
   const [allPlantsData, setAllPlantsData] = useState<IPlantData[]>([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -38,16 +41,18 @@ const Dropdown = ({ handleClick }: any) => {
   }
 
   return (
-    <Select
-      defaultValue="Save image to..."
-      size="large"
-      style={{ width: "300px" }}
-      options={plantsArray}
-      onSelect={(value) => {
-        handleClick(value);
-      }}
-    />
+    <div className="ui form huge">
+      <Dropdown
+        placeholder="Save image to..."
+        options={plantsArray}
+        selection
+        fluid
+        // onSelect={(value) => {
+        //   handleClick(value);
+        // }}
+      />
+    </div>
   );
 };
 
-export default Dropdown;
+export default DropdownComponent;

@@ -14,13 +14,17 @@ export default function Footer() {
     <footer className={css.container}>
       <div className={css.iconContainer}>
         <Link href="/">
-          <FontAwesomeIcon className={css.icon} icon={faHouse} />
+          <FontAwesomeIcon className={css.icon} icon={faHouse} size="2xl" />
         </Link>
         <Link href="/camera">
-          <FontAwesomeIcon className={css.icon} icon={faCamera} />
+          <FontAwesomeIcon className={css.icon} icon={faCamera} size="2xl" />
         </Link>
         <Link href="/add-new">
-          <FontAwesomeIcon className={css.icon} icon={faSquarePlus} />
+          <FontAwesomeIcon
+            className={css.icon}
+            icon={faSquarePlus}
+            size="2xl"
+          />
         </Link>
       </div>
     </footer>

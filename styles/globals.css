@@ -16,3 +16,11 @@ body {
   background: var(--black);
   color: var(--white);
 }
+
+.ui.header {
+  color: var(--white);
+}
+
+div[role="tab"] {
+  font-size: 18px;
+}

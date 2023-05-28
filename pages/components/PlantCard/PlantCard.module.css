@@ -1,0 +1,12 @@
+.ctaContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.meta {
+  color: red;
+}
+
+.image {
+  width: 100%;
+}

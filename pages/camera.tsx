@@ -3,7 +3,7 @@ import "react-html5-camera-photo/build/css/index.css";
 import imageUpload from "./api/addImageToS3";
 import { useState } from "react";
 import ImagePreview from "./components/ImagePreview/ImagePreview";
-import Dropdown from "./components/Dropdown/Dropdown";
+import DropdownComponent from "./components/Dropdown/Dropdown";
 
 import css from "./Camera.module.css";
 
@@ -38,7 +38,7 @@ export default function CameraPage() {
       <h1>Take a Picture</h1>
       {dataUri ? (
         <>
-          <Dropdown handleClick={handleClick} />
+          <DropdownComponent handleClick={handleClick} />
           <div className={css.imagePreview}>
             <ImagePreview dataUri={dataUri} />
           </div>
@@ -50,6 +50,7 @@ export default function CameraPage() {
           }}
           idealFacingMode={FACING_MODES.ENVIRONMENT}
           imageType={IMAGE_TYPES.JPG}
+          isSilentMode
         />
       )}
     </div>

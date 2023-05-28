@@ -1,7 +1,9 @@
 import { IPlantData } from "@/pages/plants/[pid]";
+import { formatDate } from "@/lib/utils";
+import WaterDropIcon from "../Icons/WaterDrop";
+import FertilizerIcon from "../Icons/Fertilizer";
 
 import css from "./WaterFertilizerLog.module.css";
-import { formatDate } from "@/lib/utils";
 
 interface IProps {
   plantData: IPlantData;
@@ -23,28 +25,31 @@ const WaterFertilizerLog = (props: IProps) => {
   }
 
   return (
-    <div className={css.columnContainer}>
-      <div className={css.column}>
-        <h1>Watering Log</h1>
-        {waterSort?.map((timestamp) => {
-          return (
-            <div key={timestamp}>
-              <p>{formatDate(timestamp)}</p>
-            </div>
-          );
-        })}
+    <>
+      <div className="ui hidden divider"></div>
+      <div className={css.columnContainer}>
+        <div className={css.column}>
+          <WaterDropIcon size="2x" />
+          {waterSort?.map((timestamp) => {
+            return (
+              <div key={timestamp}>
+                <p className={css.timestamp}>{formatDate(timestamp, true)}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className={css.column}>
+          <FertilizerIcon size="2x" />
+          {fertilizerSort?.map((timestamp) => {
+            return (
+              <div key={timestamp}>
+                <p className={css.timestamp}>{formatDate(timestamp, true)}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div className={css.column}>
-        <h1>Fertilizing Log</h1>
-        {fertilizerSort?.map((timestamp) => {
-          return (
-            <div key={timestamp}>
-              <p>{formatDate(timestamp)}</p>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 };
 
