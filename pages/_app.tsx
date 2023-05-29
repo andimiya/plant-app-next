@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { ConfigProvider, theme } from "antd";
 import Layout from "./components/Layout/Layout";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import "react-toastify/dist/ReactToastify.css";
 import "semantic-ui-css/semantic.min.css";
 import "@/styles/globals.css";
 

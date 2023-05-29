@@ -15,6 +15,7 @@ body {
   overflow-x: hidden;
   background: var(--black);
   color: var(--white);
+  font-family: var(--font-nunito);
 }
 
 .ui.header {
