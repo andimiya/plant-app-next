@@ -9,11 +9,11 @@ const FormAddNewPlant = () => {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
-      validate={(values) => {
+      validate={() => {
         const errors = {};
-        if (!values.title) {
-          errors.title = "Plant name is required";
-        }
+        // if (!values.title) {
+        //   errors.title = "Plant name is required";
+        // }
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
