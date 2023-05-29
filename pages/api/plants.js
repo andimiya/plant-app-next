@@ -22,7 +22,11 @@ export default async function handler(req, res) {
       const get = await db.collection(PLANT_TABLE).findOne({
         title,
       });
-      res.json(get);
+      if (!get) {
+        res.status(500);
+      } else {
+        res.json(get);
+      }
       break;
     case "PUT":
       let objForUpdateArrays = {};
