@@ -1,7 +1,12 @@
 .container {
   text-align: left;
+  padding-bottom: 5rem;
 }
 
-.container > p {
-  margin-bottom: 0.5rem;
+.plantDetails > p {
+  margin-bottom: 0.2rem;
+}
+
+.edit {
+  float: right;
 }

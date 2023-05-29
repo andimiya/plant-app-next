@@ -55,6 +55,14 @@ export interface IUpdatePlantDetails {
   sunlight?: string;
   temp?: string;
   humidity?: string;
+  soilMix?: string;
+  wateringConditions?: string;
+  fertilizerPlan?: string;
+  plantingTime?: string;
+  pruning?: string;
+  harvestTime?: string;
+  propogation?: string;
+  pestsDiseases?: string;
   notes?: string;
 }
 export const updatePlantDetails = async ({
@@ -66,6 +74,15 @@ export const updatePlantDetails = async ({
   sunlight,
   temp,
   humidity,
+  soilMix,
+  wateringConditions,
+  fertilizerPlan,
+  plantingTime,
+  pruning,
+  harvestTime,
+  propogation,
+  pestsDiseases,
+  notes,
 }: IUpdatePlantDetails) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
   let objForUpdate: IUpdatePlantDetails = {};
@@ -89,6 +106,33 @@ export const updatePlantDetails = async ({
   }
   if (humidity) {
     objForUpdate.humidity = humidity;
+  }
+  if (soilMix) {
+    objForUpdate.soilMix = soilMix;
+  }
+  if (wateringConditions) {
+    objForUpdate.wateringConditions = wateringConditions;
+  }
+  if (fertilizerPlan) {
+    objForUpdate.fertilizerPlan = fertilizerPlan;
+  }
+  if (plantingTime) {
+    objForUpdate.plantingTime = plantingTime;
+  }
+  if (pruning) {
+    objForUpdate.pruning = pruning;
+  }
+  if (harvestTime) {
+    objForUpdate.harvestTime = harvestTime;
+  }
+  if (propogation) {
+    objForUpdate.propogation = propogation;
+  }
+  if (pestsDiseases) {
+    objForUpdate.pestsDiseases = pestsDiseases;
+  }
+  if (notes) {
+    objForUpdate.notes = notes;
   }
 
   return fetch(url, {

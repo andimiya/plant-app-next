@@ -58,6 +58,33 @@ export default async function handler(req, res) {
       if (req.body.humidity) {
         objForUpdateStrings.humidity = req.body.humidity;
       }
+      if (req.body.soilMix) {
+        objForUpdateStrings.soilMix = req.body.soilMix;
+      }
+      if (req.body.wateringConditions) {
+        objForUpdateStrings.wateringConditions = req.body.wateringConditions;
+      }
+      if (req.body.fertilizerPlan) {
+        objForUpdateStrings.fertilizerPlan = req.body.fertilizerPlan;
+      }
+      if (req.body.plantingTime) {
+        objForUpdateStrings.plantingTime = req.body.plantingTime;
+      }
+      if (req.body.pruning) {
+        objForUpdateStrings.pruning = req.body.pruning;
+      }
+      if (req.body.harvestTime) {
+        objForUpdateStrings.harvestTime = req.body.harvestTime;
+      }
+      if (req.body.propogation) {
+        objForUpdateStrings.propogation = req.body.propogation;
+      }
+      if (req.body.pestsDiseases) {
+        objForUpdateStrings.pestsDiseases = req.body.pestsDiseases;
+      }
+      if (req.body.notes) {
+        objForUpdateStrings.notes = req.body.notes;
+      }
 
       const putArray = await db.collection(PLANT_TABLE).updateOne(
         {

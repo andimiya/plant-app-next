@@ -35,6 +35,15 @@ const EditDetails = ({
           sunlight: plantData?.sunlight || "",
           temp: plantData?.temp || "",
           humidity: plantData?.humidity || "",
+          soilMix: plantData?.soilMix || "",
+          wateringConditions: plantData?.wateringConditions || "",
+          fertilizerPlan: plantData?.fertilizerPlan || "",
+          plantingTime: plantData?.plantingTime || "",
+          pruning: plantData?.pruning || "",
+          harvestTime: plantData?.harvestTime || "",
+          propogation: plantData?.propogation || "",
+          pestsDiseases: plantData?.pestsDiseases || "",
+          notes: plantData?.notes || "",
         }}
         validate={(values) => {
           const errors: IErrors = {};
@@ -101,14 +110,64 @@ const EditDetails = ({
 
             <Field
               className={css.input}
+              type="soilMix"
+              name="soilMix"
+              placeholder="Soil mix"
+            />
+            <Field
+              className={css.input}
+              type="wateringConditions"
+              name="wateringConditions"
+              placeholder="Watering instructions"
+            />
+            <Field
+              className={css.input}
+              type="fertilizerPlan"
+              name="fertilizerPlan"
+              placeholder="Fertilizer plan"
+            />
+            <Field
+              className={css.input}
+              type="plantingTime"
+              name="plantingTime"
+              placeholder="Planting time ie: Spring, Fall"
+            />
+            <Field
+              className={css.input}
+              type="pruning"
+              name="pruning"
+              placeholder="Pruning"
+            />
+            <Field
+              className={css.input}
+              type="harvestTime"
+              name="harvestTime"
+              placeholder="Harvest time"
+            />
+            <Field
+              className={css.input}
+              type="propogation"
+              name="propogation"
+              placeholder="Propogation"
+            />
+            <Field
+              className={css.input}
+              type="pestsDiseases"
+              name="pestsDiseases"
+              placeholder="Pests and diseases"
+            />
+            <Field
+              className={css.input}
               type="notes"
               name="notes"
               placeholder="Notes"
               as="textarea"
             />
-            <Button size="large" type="submit" disabled={isSubmitting}>
-              Submit
-            </Button>
+            <div className={css.button}>
+              <Button size="huge" type="submit" disabled={isSubmitting}>
+                Save
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>

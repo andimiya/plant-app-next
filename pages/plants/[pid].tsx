@@ -13,13 +13,21 @@ export interface IPlantData {
   images: string[];
   watering: number[];
   fertilizing: number[];
-  streetName: string;
-  flowers: string;
-  dateAcquired: string;
-  humidity: string;
-  sunlight: string;
-  temp: string;
-  notes: string;
+  streetName?: string;
+  flowers?: string;
+  dateAcquired?: string;
+  humidity?: string;
+  sunlight?: string;
+  temp?: string;
+  soilMix?: string;
+  wateringConditions?: string;
+  fertilizerPlan?: string;
+  plantingTime?: string;
+  pruning?: string;
+  harvestTime?: string;
+  propogation?: string;
+  pestsDiseases?: string;
+  notes?: string;
 }
 
 export interface IProps {
