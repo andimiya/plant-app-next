@@ -37,7 +37,7 @@ const PlantCard = (props: IProps) => {
         ></img>
       </Link>
       <Card.Content>
-        <Card.Header>{plant?.title}</Card.Header>
+        <Card.Header className={css.header}>{plant?.title}</Card.Header>
       </Card.Content>
       <Card.Content extra>
         <div className={css.ctaContainer}>

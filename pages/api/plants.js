@@ -25,23 +25,54 @@ export default async function handler(req, res) {
       res.json(get);
       break;
     case "PUT":
-      var objForUpdate = {};
+      let objForUpdateArrays = {};
+      let objForUpdateStrings = {};
       if (req.body.imageUrl) {
-        objForUpdate.images = req.body.imageUrl;
+        objForUpdateArrays.images = req.body.imageUrl;
       }
       if (req.body.watering) {
-        objForUpdate.watering = req.body.watering;
+        objForUpdateArrays.watering = req.body.watering;
       }
       if (req.body.fertilizing) {
-        objForUpdate.fertilizing = req.body.fertilizing;
+        objForUpdateArrays.fertilizing = req.body.fertilizing;
       }
-      const put = await db.collection(PLANT_TABLE).updateOne(
+
+      if (req.body.title) {
+        objForUpdateStrings.title = req.body.title;
+      }
+      if (req.body.streetName) {
+        objForUpdateStrings.streetName = req.body.streetName;
+      }
+      if (req.body.flowers) {
+        objForUpdateStrings.flowers = req.body.flowers;
+      }
+      if (req.body.dateAcquired) {
+        objForUpdateStrings.dateAcquired = req.body.dateAcquired;
+      }
+      if (req.body.sunlight) {
+        objForUpdateStrings.sunlight = req.body.sunlight;
+      }
+      if (req.body.temp) {
+        objForUpdateStrings.temp = req.body.temp;
+      }
+      if (req.body.humidity) {
+        objForUpdateStrings.humidity = req.body.humidity;
+      }
+
+      const putArray = await db.collection(PLANT_TABLE).updateOne(
         {
           _id: new ObjectId(id),
         },
-        { $push: objForUpdate }
+        { $push: objForUpdateArrays }
       );
-      res.json(put);
+
+      const putStrings = await db.collection(PLANT_TABLE).updateOne(
+        {
+          _id: new ObjectId(id),
+        },
+        { $set: objForUpdateStrings }
+      );
+      res.json({ ...putStrings, ...putArray });
       break;
     default:
       res.setHeader("Allow", ["GET", "POST"]);

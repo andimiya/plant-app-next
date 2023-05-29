@@ -6,7 +6,7 @@ import FertilizerIcon from "../Icons/Fertilizer";
 import css from "./WaterFertilizerLog.module.css";
 
 interface IProps {
-  plantData: IPlantData;
+  plantData?: IPlantData;
 }
 
 const WaterFertilizerLog = (props: IProps) => {

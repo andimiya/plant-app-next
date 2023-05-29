@@ -3,6 +3,9 @@ import Gallery from "../components/Gallery/Gallery";
 import WaterFertilizerLog from "../components/WaterFertilizerLog/WaterFertilizerLog";
 import { getPlant } from "@/lib/plants";
 import { Header } from "semantic-ui-react";
+import PlantDetails from "../components/PlantDetails/PlantDetails";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export interface IPlantData {
   _id: string;
@@ -10,19 +13,56 @@ export interface IPlantData {
   images: string[];
   watering: number[];
   fertilizing: number[];
+  streetName: string;
+  flowers: string;
+  dateAcquired: string;
+  humidity: string;
+  sunlight: string;
+  temp: string;
+  notes: string;
 }
 
 export interface IProps {
   plantData: IPlantData;
 }
 
-const Plant = ({ plantData }: IProps) => {
+const Plant = () => {
+  const [plantData, setPlantData] = useState<IPlantData>();
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const { asPath } = useRouter();
+
+  const title: string = asPath.replace("/plants/", "");
+
+  const getPlantData = (title: string) => {
+    getPlant(title).then((data) => {
+      setPlantData(data);
+    });
+  };
+
+  const refreshData = (title: string) => {
+    setLoading(true);
+    getPlantData(title);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getPlantData(title);
+    setLoading(false);
+  }, [title]);
+
   const onChange = () => {};
   const items: TabsProps["items"] = [
     {
       key: "1",
       label: `Plant Details`,
-      children: <p>Plant name: {plantData?.title}</p>,
+      children: (
+        <PlantDetails
+          plantData={plantData}
+          isLoading={isLoading}
+          refreshData={refreshData}
+        />
+      ),
     },
     {
       key: "2",

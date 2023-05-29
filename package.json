@@ -26,7 +26,7 @@
     "react": "18.2.0",
     "react-html5-camera-photo": "^1.5.11",
     "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4"
+    "semantic-ui-react": "3.0.0-beta.0"
   },
   "devDependencies": {
     "@types/node": "18.15.5",
