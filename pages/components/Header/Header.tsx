@@ -90,7 +90,6 @@ export default function Nav() {
         />
         {/*  Manifest.json  */}
         <link rel="manifest" href="../../manifest.json" />
-        <link rel="stylesheet" href={`/_next/static/style.css`} />
       </Head>
     </nav>
   );
