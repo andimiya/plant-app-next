@@ -1,6 +1,12 @@
 import Head from "next/head";
 
 export default function Nav() {
+  // let version = "";
+
+  // if (process.env.NODE_ENV === "production") {
+  //   version = `?v=${readFileSync(`${process.cwd()}/src/.next/BUILD_ID`)}`;
+  // }
+
   return (
     <nav>
       <Head>
@@ -84,6 +90,7 @@ export default function Nav() {
         />
         {/*  Manifest.json  */}
         <link rel="manifest" href="../../manifest.json" />
+        <link rel="stylesheet" href={`/_next/static/style.css`} />
       </Head>
     </nav>
   );
