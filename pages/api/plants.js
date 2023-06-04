@@ -11,11 +11,57 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "POST":
-      const { content } = req.body;
-      const post = await db.collection(PLANT_TABLE).insertOne({
-        title: req.body.title,
-        content,
-      });
+      let objtoAdd = {};
+
+      objtoAdd.title = req.body.title;
+
+      if (req.body.streetName) {
+        objtoAdd.streetName = req.body.streetName;
+      }
+      if (req.body.flowers) {
+        objtoAdd.flowers = req.body.flowers;
+      }
+      if (req.body.dateAcquired) {
+        objtoAdd.dateAcquired = req.body.dateAcquired;
+      }
+      if (req.body.sunlight) {
+        objtoAdd.sunlight = req.body.sunlight;
+      }
+      if (req.body.temp) {
+        objtoAdd.temp = req.body.temp;
+      }
+      if (req.body.humidity) {
+        objtoAdd.humidity = req.body.humidity;
+      }
+      if (req.body.soilMix) {
+        objtoAdd.soilMix = req.body.soilMix;
+      }
+      if (req.body.wateringConditions) {
+        objtoAdd.wateringConditions = req.body.wateringConditions;
+      }
+      if (req.body.fertilizerPlan) {
+        objtoAdd.fertilizerPlan = req.body.fertilizerPlan;
+      }
+      if (req.body.plantingTime) {
+        objtoAdd.plantingTime = req.body.plantingTime;
+      }
+      if (req.body.pruning) {
+        objtoAdd.pruning = req.body.pruning;
+      }
+      if (req.body.harvestTime) {
+        objtoAdd.harvestTime = req.body.harvestTime;
+      }
+      if (req.body.propogation) {
+        objtoAdd.propogation = req.body.propogation;
+      }
+      if (req.body.pestsDiseases) {
+        objtoAdd.pestsDiseases = req.body.pestsDiseases;
+      }
+      if (req.body.notes) {
+        objtoAdd.notes = req.body.notes;
+      }
+
+      const post = await db.collection(PLANT_TABLE).insertOne(objtoAdd);
       res.status(200).json(post);
       break;
     case "GET":

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { IUpdatePlantDetails, updatePlantDetails } from "@/lib/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
 
-import css from "./EditDetails.module.css";
+import css from "./Form.module.css";
 
 interface IProps {
   plantData?: IPlantData;
@@ -70,7 +70,9 @@ const EditDetails = ({
               name="title"
               placeholder="Plant name"
             />
-            <ErrorMessage name="title" component="div" />
+            <div className={css.error}>
+              <ErrorMessage name="title" />
+            </div>
             <Field
               className={css.input}
               type="streetName"

@@ -8,6 +8,6 @@
 }
 
 .timestamp {
-  font-size: 1.4rem;
+  font-size: var(--p-size);
   line-height: 3rem;
 }

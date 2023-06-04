@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import Footer from "../Footer/Footer";
 import Nav from "../Header/Header";
-import { Nunito } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import { ToastContainer, Slide } from "react-toastify";
 import css from "./Layout.module.css";
 
@@ -9,11 +9,12 @@ interface Props {
   children?: ReactNode;
 }
 
-const nunito = Nunito({
-  weight: ["200", "300", "400", "500"],
+const nunito = Quicksand({
+  weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
   display: "swap",
-  style: ["normal", "italic"],
+  style: ["normal"],
+  variable: "--font-nunito",
 });
 
 const Layout = ({ children }: Props) => (

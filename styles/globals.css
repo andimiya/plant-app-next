@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap");
+
 :root {
   --black: #141429;
   --white: #e0d6d3;
@@ -7,6 +9,8 @@
   --sand: #d2b8af;
   --light-teal: #72a6b0;
   --light-rust: #c5926a;
+  --error: red;
+  --p-size: 1.3rem;
 }
 
 html,
@@ -15,13 +19,33 @@ body {
   overflow-x: hidden;
   background: var(--black);
   color: var(--white);
-  font-family: var(--font-nunito);
+  font-family: "Quicksand," sans-serif;
 }
 
-.ui.header {
-  color: var(--white);
+h1 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+h2,
+div,
+p,
+select {
+  font-family: "Quicksand", sans-serif;
+  /* color: white; */
 }
 
 div[role="tab"] {
   font-size: 18px;
+}
+
+.ui.card,
+.ui.cards > .card {
+  box-shadow: none;
+}
+
+.ui.card,
+.ui.card.mini {
+  background: var(--black);
 }

@@ -84,6 +84,7 @@ export default function Nav() {
         />
         {/*  Manifest.json  */}
         <link rel="manifest" href="../../manifest.json" />
+
         {/* <script async src="https://kit.fontawesome.com/c0c7010aa1.js"></script> */}
       </Head>
     </nav>

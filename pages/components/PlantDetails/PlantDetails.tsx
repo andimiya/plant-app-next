@@ -1,9 +1,9 @@
 import { IPlantData } from "@/pages/plants/[pid]";
 import { useState } from "react";
-import EditDetails from "./EditDetails";
 import EditIcon from "../Icons/Edit";
 
 import css from "./PlantDetails.module.css";
+import EditDetails from "../Form/EditDetails";
 
 interface IProps {
   plantData?: IPlantData;

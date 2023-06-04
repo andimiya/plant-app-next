@@ -2,11 +2,12 @@
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  padding: 3rem 1rem;
+  padding: 1.5rem 2rem;
   text-align: center;
   margin: 2rem;
   border-radius: 0.5rem;
   background-color: var(--dark-gray-background);
+  padding-bottom: 10rem;
 }
 
 .contents {

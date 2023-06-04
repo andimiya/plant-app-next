@@ -5,6 +5,8 @@
 
 .plantDetails > p {
   margin-bottom: 0.2rem;
+  font-size: var(--p-size);
+  line-height: 2.1rem;
 }
 
 .edit {

@@ -3,7 +3,7 @@ import { IPlantData } from "@/pages/plants/[pid]";
 import { getAllPlants } from "@/lib/plants";
 import { toast } from "react-toastify";
 
-// import css from "./Dropdown.module.css";
+import css from "./Dropdown.module.css";
 
 interface IOptions {
   key: string;
@@ -49,11 +49,11 @@ const DropdownComponent = ({ handleClick }: any) => {
   return (
     <div className="ui form huge" style={{ margin: "2rem 0.75rem" }}>
       <select
-        className="ui dropdown"
+        className={`ui dropdown`}
         style={{ height: "50px", backgroundColor: "#141429", color: "#e0d6d3" }}
         onChange={(e) => onSelect(e)}
       >
-        <option value="" selected disabled hidden>
+        <option className={css.dropdown} value="" selected disabled hidden>
           Select plant
         </option>
         {allPlantsData.map((plant: IPlantData) => (

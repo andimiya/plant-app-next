@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { IPlantData } from "./plants/[pid]";
 import { fertilizePlant, getAllPlants, waterPlant } from "../lib/plants";
-import { Header } from "semantic-ui-react";
 import PlantCard from "./components/PlantCard/PlantCard";
 export interface IProps {
   allPlants: IPlantData[];
@@ -23,7 +22,7 @@ const Home = ({ allPlants }: IProps) => {
   }, []);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h2>Loading...</h2>;
   }
 
   const water = async (id: string) => {
@@ -38,10 +37,7 @@ const Home = ({ allPlants }: IProps) => {
 
   return (
     <div>
-      <Header as="h1" size="huge">
-        My Plants
-      </Header>
-      <div className="ui hidden divider"></div>
+      <h1 style={{ marginBottom: "1rem", fontSize: "1.7rem" }}>All Plants</h1>
       <div className="ui centered cards">
         {allPlantsData.length &&
           allPlantsData.map((plant: IPlantData) => {

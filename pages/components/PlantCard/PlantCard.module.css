@@ -1,12 +1,21 @@
+.image {
+  object-fit: cover;
+}
+
+.plantName {
+  font-family: var(--font-nunito) sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: var(--white);
+}
+
 .ctaContainer {
   display: flex;
   justify-content: space-evenly;
 }
 
 .meta {
-  color: red;
-}
-
-.image {
-  width: 100%;
+  padding: 6px;
+  color: var(--white);
+  font-size: 0.8rem;
 }

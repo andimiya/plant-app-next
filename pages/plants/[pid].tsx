@@ -2,7 +2,6 @@ import { Tabs, TabsProps } from "antd";
 import Gallery from "../components/Gallery/Gallery";
 import WaterFertilizerLog from "../components/WaterFertilizerLog/WaterFertilizerLog";
 import { getPlant } from "@/lib/plants";
-import { Header } from "semantic-ui-react";
 import PlantDetails from "../components/PlantDetails/PlantDetails";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -85,9 +84,7 @@ const Plant = () => {
   ];
   return (
     <div>
-      <Header as="h1" size="huge">
-        {plantData?.title}
-      </Header>
+      <h1>{plantData?.title}</h1>
       <div className="ui hidden divider"></div>
       <Tabs
         defaultActiveKey="1"

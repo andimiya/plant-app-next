@@ -4,8 +4,12 @@
   justify-content: center;
 }
 
+.button {
+  margin-top: 1rem;
+}
+
 .input {
-  width: 90%;
+  width: 100%;
   margin-bottom: 0.7rem;
   padding: 1rem;
   background-color: var(--black);
@@ -16,6 +20,11 @@
   font-size: 1.5rem;
 }
 
-.button {
-  margin-top: 1rem;
+.error {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: var(--error);
+  text-align: left;
+  width: 100%;
+  padding-left: 6px;
 }

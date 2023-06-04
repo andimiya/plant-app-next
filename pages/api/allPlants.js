@@ -10,7 +10,11 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       const getAll = await db.collection(PLANT_TABLE).find().toArray();
-      res.json(getAll);
+      if (!getAll) {
+        res.status(500);
+      } else {
+        res.json(getAll);
+      }
       break;
     default:
       res.setHeader("Allow", ["GET", "POST"]);
