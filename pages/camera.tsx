@@ -6,13 +6,16 @@ import ImagePreview from "./components/ImagePreview/ImagePreview";
 import DropdownComponent from "./components/Dropdown/Dropdown";
 
 import css from "./Camera.module.css";
+import { useRouter } from "next/router";
+import { Button } from "semantic-ui-react";
 
 export default function CameraPage() {
+  const router = useRouter();
   const [dataUri, setDataUri] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const handleClick = async (plantId: number) => {
-    const id = plantId;
+  const handleClick = async (plantId: string) => {
+    const id = router.query.id ? router.query.id : plantId;
     const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
     await fetch(url, {
       method: "PUT",
@@ -38,7 +41,13 @@ export default function CameraPage() {
       <h1>Take a Picture</h1>
       {dataUri ? (
         <>
-          <DropdownComponent handleClick={handleClick} />
+          {!router.query.length ? (
+            <DropdownComponent handleClick={handleClick} />
+          ) : (
+            <Button onClick={() => handleClick(router.query.toString())}>
+              {`Save Image to ${router.query.name}`}
+            </Button>
+          )}
           <div className={css.imagePreview}>
             <ImagePreview dataUri={dataUri} />
           </div>

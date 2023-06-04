@@ -1,14 +1,34 @@
 import { Col, Row } from "antd";
-import css from "./Gallery.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Gallery(props: any) {
+import css from "./Gallery.module.css";
+
+interface IProps {
+  images?: string[];
+  plantId?: string;
+  plantName?: string;
+}
+
+export default function Gallery({ images, plantId, plantName }: IProps) {
   return (
     <>
       <div className="ui hidden divider"></div>
       <Row gutter={[16, 16]}>
-        {props.images &&
-          props.images.map((image: any, i: number) => (
+        <Col span={8}>
+          <Link href={`/camera?id=${plantId}&name=${plantName}`}>
+            <Image
+              alt="image"
+              className={css.imageDefault}
+              src="/camera-placeholder.jpg"
+              width={50}
+              height={50}
+              unoptimized
+            />
+          </Link>
+        </Col>
+        {images &&
+          images.map((image: any, i: number) => (
             <Col key={i} span={8}>
               <Image
                 loader={() => image}

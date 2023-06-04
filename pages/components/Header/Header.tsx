@@ -14,7 +14,7 @@ export default function Nav() {
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
         {/* Android */}
-        <meta name="theme-color" content="black" />
+        <meta name="theme-color" content="#141429" />
         <meta name="mobile-web-app-capable" content="yes" />
         {/* iOS */}
         <meta name="apple-mobile-web-app-title" content="Application Title" />
@@ -84,8 +84,6 @@ export default function Nav() {
         />
         {/*  Manifest.json  */}
         <link rel="manifest" href="../../manifest.json" />
-
-        {/* <script async src="https://kit.fontawesome.com/c0c7010aa1.js"></script> */}
       </Head>
     </nav>
   );

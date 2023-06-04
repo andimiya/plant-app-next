@@ -74,7 +74,13 @@ const Plant = () => {
     {
       key: "2",
       label: `Gallery`,
-      children: <Gallery images={plantData?.images} />,
+      children: (
+        <Gallery
+          images={plantData?.images}
+          plantId={plantData?._id}
+          plantName={plantData?.title}
+        />
+      ),
     },
     {
       key: "3",
