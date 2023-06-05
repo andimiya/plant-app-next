@@ -38,12 +38,20 @@ const Plant = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const { asPath } = useRouter();
 
-  const title: string = asPath.replace("/plants/", "");
+  let title: string | null = asPath.replace("/plants/", "");
+  if (!title) {
+    setPlantData(undefined);
+    title = null;
+  }
 
-  const getPlantData = (title: string) => {
-    getPlant(title).then((data) => {
-      setPlantData(data);
-    });
+  const getPlantData = (title: string | null) => {
+    if (!title) {
+      return <h2>Plant not found</h2>;
+    } else {
+      getPlant(title).then((data) => {
+        setPlantData(data);
+      });
+    }
   };
 
   const refreshData = (title: string) => {

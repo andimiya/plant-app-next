@@ -12,8 +12,7 @@ interface IProps {
 
 export default function Gallery({ images, plantId, plantName }: IProps) {
   return (
-    <>
-      <div className="ui hidden divider"></div>
+    <div className={css.container}>
       <Row gutter={[16, 16]}>
         <Col span={8}>
           <Link href={`/camera?id=${plantId}&name=${plantName}`}>
@@ -43,6 +42,6 @@ export default function Gallery({ images, plantId, plantName }: IProps) {
             </Col>
           ))}
       </Row>
-    </>
+    </div>
   );
 }

@@ -67,7 +67,7 @@ export default function Nav() {
         {/* Pinned Tab */}
         <link href="path/to/icon.svg" rel="mask-icon" sizes="any" color="red" />
         {/*  Android  */}
-        <link href="icon-192x192.png" rel="icon" sizes="192x192" />
+        {/* <link href="icon-192x192.png" rel="icon" sizes="192x192" /> */}
         {/* <link href="icon-128x128.png" rel="icon" sizes="128x128" /> */}
         {/*  Others */}
         <link href="favicon.ico" rel="shortcut-icon" type="image/x-icon" />
