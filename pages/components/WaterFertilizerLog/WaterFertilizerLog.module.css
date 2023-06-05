@@ -5,9 +5,11 @@
 
 .column {
   flex: 50%;
+  margin-top: 1rem;
 }
 
 .timestamp {
   font-size: var(--p-size);
-  line-height: 3rem;
+  margin: 4px;
+  font-weight: 300;
 }

@@ -29,7 +29,7 @@ const WaterFertilizerLog = (props: IProps) => {
       <div className="ui hidden divider"></div>
       <div className={css.columnContainer}>
         <div className={css.column}>
-          <WaterDropIcon size="2x" />
+          <WaterDropIcon size="1x" />
           {waterSort?.map((timestamp) => {
             return (
               <div key={timestamp}>
@@ -39,7 +39,7 @@ const WaterFertilizerLog = (props: IProps) => {
           })}
         </div>
         <div className={css.column}>
-          <FertilizerIcon size="2x" />
+          <FertilizerIcon size="1x" />
           {fertilizerSort?.map((timestamp) => {
             return (
               <div key={timestamp}>

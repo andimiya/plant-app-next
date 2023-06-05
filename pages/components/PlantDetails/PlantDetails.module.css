@@ -1,12 +1,24 @@
 .container {
   text-align: left;
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
+}
+
+.plantDetails > h2 {
+  font-size: var(--h2-size);
+  margin: 4px;
+  font-weight: 400;
+  margin-top: 1rem;
 }
 
 .plantDetails > p {
-  margin-bottom: 0.2rem;
   font-size: var(--p-size);
-  line-height: 2.1rem;
+  line-height: 2rem;
+  margin: 4px;
+  font-weight: 300;
+}
+
+.plantDetails > .title {
+  margin-top: 1.5rem;
 }
 
 .edit {

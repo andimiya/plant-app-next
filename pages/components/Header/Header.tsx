@@ -1,12 +1,6 @@
 import Head from "next/head";
 
 export default function Nav() {
-  // let version = "";
-
-  // if (process.env.NODE_ENV === "production") {
-  //   version = `?v=${readFileSync(`${process.cwd()}/src/.next/BUILD_ID`)}`;
-  // }
-
   return (
     <nav>
       <Head>
@@ -88,6 +82,7 @@ export default function Nav() {
           rel="apple-touch-icon"
           sizes="72x72"
         />
+
         {/*  Manifest.json  */}
         <link rel="manifest" href="../../manifest.json" />
       </Head>

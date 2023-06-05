@@ -28,42 +28,49 @@ const PlantCard = (props: IProps) => {
     : null;
 
   return plant ? (
-    <Card key={plant?._id} className="ui card mini">
-      <Link href={`/plants/${plant?.title}`}>
-        <img
-          src={image}
-          alt={plant?.title ? plant.title : "Default image"}
-          className={css.image}
-          height="200px"
-          width="100%"
-        ></img>
-      </Link>
-      <Card.Content>
-        <h2 className={css.plantName}>{plant?.title}</h2>
-      </Card.Content>
-      <Card.Content extra>
-        <div className={css.ctaContainer}>
-          <div onClick={() => water(plant._id)} className={css.iconButton}>
-            <WaterDropIcon size="2x" />
-            {latestWaterDate && (
-              <Card.Meta>
-                <p className={css.meta}>{formatDate(latestWaterDate, true)}</p>
-              </Card.Meta>
-            )}
+    <div className={css.card}>
+      <Card key={plant?._id} className="ui card mini">
+        <Link href={`/plants/${plant?.title}`}>
+          <img
+            src={image}
+            alt={plant?.title ? plant.title : "Default image"}
+            className={css.image}
+            height="200px"
+            width="100%"
+          ></img>
+        </Link>
+        <Card.Content className={css.cardTitleContainer}>
+          <h2 className={css.plantName}>{plant?.title}</h2>
+        </Card.Content>
+        <Card.Content extra>
+          <div className={css.ctaContainer}>
+            <div onClick={() => water(plant._id)} className={css.iconButton}>
+              <WaterDropIcon size="2x" />
+              {latestWaterDate && (
+                <Card.Meta>
+                  <p className={css.meta}>
+                    {formatDate(latestWaterDate, true)}
+                  </p>
+                </Card.Meta>
+              )}
+            </div>
+            <div
+              onClick={() => fertilize(plant._id)}
+              className={css.iconButton}
+            >
+              <FertilizerIcon size="2x" />
+              {latestFertilizeDate && (
+                <Card.Meta>
+                  <p className={css.meta}>
+                    {formatDate(latestFertilizeDate, true)}
+                  </p>
+                </Card.Meta>
+              )}{" "}
+            </div>
           </div>
-          <div onClick={() => fertilize(plant._id)} className={css.iconButton}>
-            <FertilizerIcon size="2x" />
-            {latestFertilizeDate && (
-              <Card.Meta>
-                <p className={css.meta}>
-                  {formatDate(latestFertilizeDate, true)}
-                </p>
-              </Card.Meta>
-            )}{" "}
-          </div>
-        </div>
-      </Card.Content>
-    </Card>
+        </Card.Content>
+      </Card>
+    </div>
   ) : (
     <div>Loading</div>
   );

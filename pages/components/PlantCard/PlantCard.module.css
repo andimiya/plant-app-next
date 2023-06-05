@@ -4,8 +4,8 @@
 
 .plantName {
   font-family: var(--font-nunito) sans-serif;
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 300;
+  font-size: 1.2rem;
   color: var(--white);
 }
 
@@ -18,4 +18,12 @@
   padding: 6px;
   color: var(--white);
   font-size: 0.8rem;
+}
+
+.card {
+  margin-bottom: 2rem;
+}
+
+.cardTitleContainer {
+  padding: 0.2rem 0.8rem;
 }

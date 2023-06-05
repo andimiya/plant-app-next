@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { IPlantData } from "./plants/[pid]";
 import { fertilizePlant, getAllPlants, waterPlant } from "../lib/plants";
 import PlantCard from "./components/PlantCard/PlantCard";
+
 export interface IProps {
   allPlants: IPlantData[];
 }
@@ -37,7 +38,7 @@ const Home = ({ allPlants }: IProps) => {
 
   return (
     <div>
-      <h1 style={{ marginBottom: "1rem", fontSize: "1.7rem" }}>All Plants</h1>
+      <h1 style={{ fontSize: "1.5rem", fontWeight: "300" }}>All Plants</h1>
       <div className="ui centered cards">
         {allPlantsData.length &&
           allPlantsData.map((plant: IPlantData) => {

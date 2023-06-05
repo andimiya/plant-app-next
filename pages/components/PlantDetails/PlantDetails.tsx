@@ -18,7 +18,6 @@ const PlantDetails = ({ plantData, isLoading, refreshData }: IProps) => {
     <div>Loading...</div>
   ) : (
     <div className={css.container}>
-      <div className="ui hidden divider"></div>
       <div className={css.edit}>
         {!edit && (
           <div onClick={() => setEdit(!edit)}>
@@ -28,7 +27,7 @@ const PlantDetails = ({ plantData, isLoading, refreshData }: IProps) => {
       </div>
       {!edit ? (
         <div className={css.plantDetails}>
-          <p>Latin name: {plantData?.title}</p>
+          <p className={css.title}>Latin name: {plantData?.title}</p>
           {plantData?.streetName && <p>Street name: {plantData.streetName}</p>}
           {plantData?.flowers && <p>Flowers: {plantData.flowers}</p>}
           {plantData?.dateAcquired && (

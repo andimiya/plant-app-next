@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap");
+
 .main {
   display: flex;
   justify-content: center;
@@ -7,10 +9,10 @@
   margin: 2rem;
   border-radius: 0.5rem;
   background-color: var(--dark-gray-background);
-  padding-bottom: 10rem;
+  padding-bottom: 1rem;
+  margin-bottom: 9rem;
   box-sizing: border-box;
   overflow-x: hidden;
-  background: var(--black);
   color: var(--white);
   font-family: "Quicksand," sans-serif;
 }
