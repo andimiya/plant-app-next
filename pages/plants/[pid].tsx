@@ -11,7 +11,9 @@ export interface IPlantData {
   title: string;
   images: string[];
   watering: number[];
+  daysBetweenWatering: number;
   fertilizing: number[];
+  daysBetweenFertilizing: number;
   streetName?: string;
   flowers?: string;
   dateAcquired?: string;

@@ -1,9 +1,10 @@
+import React from "react";
+import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Button } from "semantic-ui-react";
 import { useRouter } from "next/navigation";
 import { IUpdatePlantDetails, updatePlantDetails } from "@/lib/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
-
+import Button from "../Button/Button";
 import css from "./Form.module.css";
 
 interface IProps {
@@ -12,9 +13,12 @@ interface IProps {
   isLoading: boolean;
   refreshData: any;
 }
-interface IErrors {
-  title?: string;
-}
+const validation = Yup.object().shape({
+  daysBetweenWatering: Yup.number().typeError("Must be a number"),
+  daysBetweenFertilizing: Yup.number().typeError("Must be a number"),
+  title: Yup.string().required("Plant name is required"),
+});
+
 const EditDetails = ({
   plantData,
   setEdit,
@@ -37,7 +41,9 @@ const EditDetails = ({
           humidity: plantData?.humidity || "",
           soilMix: plantData?.soilMix || "",
           wateringConditions: plantData?.wateringConditions || "",
+          daysBetweenWatering: plantData?.daysBetweenWatering || 0,
           fertilizerPlan: plantData?.fertilizerPlan || "",
+          daysBetweenFertilizing: plantData?.daysBetweenFertilizing || 0,
           plantingTime: plantData?.plantingTime || "",
           pruning: plantData?.pruning || "",
           harvestTime: plantData?.harvestTime || "",
@@ -45,13 +51,7 @@ const EditDetails = ({
           pestsDiseases: plantData?.pestsDiseases || "",
           notes: plantData?.notes || "",
         }}
-        validate={(values) => {
-          const errors: IErrors = {};
-          if (!values.title) {
-            errors.title = "Plant name is required";
-          }
-          return errors;
-        }}
+        validationSchema={validation}
         onSubmit={async (values: IUpdatePlantDetails) => {
           values.id = plantData?._id;
           await updatePlantDetails(values);
@@ -62,7 +62,7 @@ const EditDetails = ({
           refreshData(values.title);
         }}
       >
-        {({ isSubmitting }) => (
+        {({ errors, touched, isSubmitting }) => (
           <Form className={css.form}>
             <Field
               className={css.input}
@@ -70,6 +70,9 @@ const EditDetails = ({
               name="title"
               placeholder="Plant name"
             />
+            {errors.title && touched.title ? (
+              <div className={css.error}>{errors.title}</div>
+            ) : null}
             <div className={css.error}>
               <ErrorMessage name="title" />
             </div>
@@ -124,10 +127,28 @@ const EditDetails = ({
             />
             <Field
               className={css.input}
+              type="daysBetweenWatering"
+              name="daysBetweenWatering"
+              placeholder="Days between watering"
+            />
+            {errors.daysBetweenWatering && touched.daysBetweenWatering ? (
+              <div className={css.error}>{errors.daysBetweenWatering}</div>
+            ) : null}
+            <Field
+              className={css.input}
               type="fertilizerPlan"
               name="fertilizerPlan"
               placeholder="Fertilizer plan"
             />
+            <Field
+              className={css.input}
+              type="daysBetweenFertilizing"
+              name="daysBetweenFertilizing"
+              placeholder="Days between fertilizing"
+            />
+            {errors.daysBetweenFertilizing && touched.daysBetweenFertilizing ? (
+              <div className={css.error}>{errors.daysBetweenFertilizing}</div>
+            ) : null}
             <Field
               className={css.input}
               type="plantingTime"
@@ -166,9 +187,12 @@ const EditDetails = ({
               as="textarea"
             />
             <div className={css.button}>
-              <Button size="huge" type="submit" disabled={isSubmitting}>
-                Save
-              </Button>
+              <Button
+                buttonText="Save"
+                variant="primary"
+                disabled={isSubmitting}
+                submit
+              />
             </div>
           </Form>
         )}

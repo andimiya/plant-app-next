@@ -1,0 +1,14 @@
+.primary {
+  color: var(--white);
+  display: block;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--teal);
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: var(--quicksand);
+}

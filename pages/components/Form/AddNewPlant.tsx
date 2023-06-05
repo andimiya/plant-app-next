@@ -1,15 +1,18 @@
 "use client";
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 import { useRouter } from "next/navigation";
-import { Button } from "semantic-ui-react";
 import { IAddPlant, addPlant } from "@/lib/plants";
+import Button from "../Button/Button";
 
 import css from "./Form.module.css";
 
-interface IErrors {
-  title?: string;
-}
+const validation = Yup.object().shape({
+  daysBetweenWatering: Yup.number().typeError("Must be a number"),
+  daysBetweenFertilizing: Yup.number().typeError("Must be a number"),
+  title: Yup.string().required("Plant name is required"),
+});
 
 const FormAddNewPlant = () => {
   const { push } = useRouter();
@@ -26,7 +29,9 @@ const FormAddNewPlant = () => {
         humidity: "",
         soilMix: "",
         wateringConditions: "",
+        daysBetweenWatering: 0,
         fertilizerPlan: "",
+        daysBetweenFertilizing: 0,
         plantingTime: "",
         pruning: "",
         harvestTime: "",
@@ -34,19 +39,13 @@ const FormAddNewPlant = () => {
         pestsDiseases: "",
         notes: "",
       }}
-      validate={(values) => {
-        const errors: IErrors = {};
-        if (!values.title) {
-          errors.title = "Plant name is required";
-        }
-        return errors;
-      }}
+      validationSchema={validation}
       onSubmit={async (values: IAddPlant) => {
         await addPlant(values);
         push(`/plants/${values.title}`);
       }}
     >
-      {({ isSubmitting }) => (
+      {({ errors, touched, isSubmitting }) => (
         <Form className={css.form}>
           <Field
             className={css.input}
@@ -54,9 +53,9 @@ const FormAddNewPlant = () => {
             name="title"
             placeholder="Plant name"
           />
-          <div className={css.error}>
-            <ErrorMessage name="title" />
-          </div>
+          {errors.title && touched.title ? (
+            <div className={css.error}>{errors.title}</div>
+          ) : null}
           <Field
             className={css.input}
             type="streetName"
@@ -106,12 +105,31 @@ const FormAddNewPlant = () => {
             name="wateringConditions"
             placeholder="Watering instructions"
           />
+
+          <Field
+            className={css.input}
+            type="daysBetweenWatering"
+            name="daysBetweenWatering"
+            placeholder="Days between watering"
+          />
+          {errors.daysBetweenWatering && touched.daysBetweenWatering ? (
+            <div className={css.error}>{errors.daysBetweenWatering}</div>
+          ) : null}
           <Field
             className={css.input}
             type="fertilizerPlan"
             name="fertilizerPlan"
             placeholder="Fertilizer plan"
           />
+          <Field
+            className={css.input}
+            type="daysBetweenFertilizing"
+            name="daysBetweenFertilizing"
+            placeholder="Days between fertilizing"
+          />
+          {errors.daysBetweenFertilizing && touched.daysBetweenFertilizing ? (
+            <div className={css.error}>{errors.daysBetweenFertilizing}</div>
+          ) : null}
           <Field
             className={css.input}
             type="plantingTime"
@@ -150,9 +168,12 @@ const FormAddNewPlant = () => {
             as="textarea"
           />
           <div className={css.button}>
-            <Button size="huge" type="submit" disabled={isSubmitting}>
-              Save
-            </Button>
+            <Button
+              buttonText="Save"
+              variant="primary"
+              disabled={isSubmitting}
+              submit
+            />
           </div>
         </Form>
       )}

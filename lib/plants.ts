@@ -56,7 +56,9 @@ export interface IAddPlant {
   temp?: string;
   soilMix?: string;
   wateringConditions?: string;
+  daysBetweenWatering?: number;
   fertilizerPlan?: string;
+  daysBetweenFertilizing?: number;
   plantingTime?: string;
   pruning?: string;
   harvestTime?: string;
@@ -155,7 +157,9 @@ export interface IUpdatePlantDetails {
   humidity?: string;
   soilMix?: string;
   wateringConditions?: string;
+  daysBetweenWatering?: number;
   fertilizerPlan?: string;
+  daysBetweenFertilizing?: number;
   plantingTime?: string;
   pruning?: string;
   harvestTime?: string;

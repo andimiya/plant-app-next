@@ -49,6 +49,8 @@ const PlantCard = (props: IProps) => {
               {latestWaterDate && (
                 <Card.Meta>
                   <p className={css.meta}>
+                    Last watered:
+                    <br />
                     {formatDate(latestWaterDate, true)}
                   </p>
                 </Card.Meta>
@@ -62,6 +64,7 @@ const PlantCard = (props: IProps) => {
               {latestFertilizeDate && (
                 <Card.Meta>
                   <p className={css.meta}>
+                    Last fertilized: <br />
                     {formatDate(latestFertilizeDate, true)}
                   </p>
                 </Card.Meta>
