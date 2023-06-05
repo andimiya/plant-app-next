@@ -8,6 +8,11 @@
   border-radius: 0.5rem;
   background-color: var(--dark-gray-background);
   padding-bottom: 10rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Quicksand," sans-serif;
 }
 
 .contents {

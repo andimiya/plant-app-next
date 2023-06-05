@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Footer from "../Footer/Footer";
-import Nav from "../Header/Header";
+import Header from "../Header/Header";
 import { Quicksand } from "next/font/google";
 import { ToastContainer, Slide } from "react-toastify";
 import css from "./Layout.module.css";
@@ -18,7 +18,7 @@ const nunito = Quicksand({
 });
 
 const Layout = ({ children }: Props) => (
-  <main className={`${nunito.className} ${css.main}`}>
+  <div className={`${nunito.className} ${css.main}`}>
     <ToastContainer
       position="top-right"
       autoClose={2000}
@@ -33,10 +33,11 @@ const Layout = ({ children }: Props) => (
       transition={Slide}
     />
 
-    <Nav />
+    <Header />
+
     <div className={css.contents}>{children}</div>
     <Footer />
-  </main>
+  </div>
 );
 
 export default Layout;

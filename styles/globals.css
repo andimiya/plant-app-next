@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap";
 
 :root {
   --black: #141429;
@@ -13,7 +13,6 @@
   --p-size: 1.3rem;
 }
 
-html,
 body {
   box-sizing: border-box;
   overflow-x: hidden;
@@ -43,6 +42,7 @@ div[role="tab"] {
 .ui.card,
 .ui.cards > .card {
   box-shadow: none;
+  background: var(--black);
 }
 
 .ui.card,
