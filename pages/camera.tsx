@@ -7,7 +7,7 @@ import DropdownComponent from "./components/Dropdown/Dropdown";
 
 import css from "./Camera.module.css";
 import { useRouter } from "next/router";
-import { Button } from "semantic-ui-react";
+// import { Button } from "semantic-ui-react";
 
 export default function CameraPage() {
   const router = useRouter();
@@ -44,9 +44,9 @@ export default function CameraPage() {
           {!router.query.length ? (
             <DropdownComponent handleClick={handleClick} />
           ) : (
-            <Button onClick={() => handleClick(router.query.toString())}>
+            <button onClick={() => handleClick(router.query.toString())}>
               {`Save Image to ${router.query.name}`}
-            </Button>
+            </button>
           )}
           <div className={css.imagePreview}>
             <ImagePreview dataUri={dataUri} />

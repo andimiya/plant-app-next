@@ -8,16 +8,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "lint": "next lint",
     "api-deploy": "vercel deploy",
-    "api-deploy-prod": "vercel --prod"
+    "api-deploy-prod": "vercel --prod",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "eslint-config-next": "13.2.4",
     "formik": "^2.4.0",
+    "heroku": "^8.1.7",
     "mongodb": "^5.2.0",
     "next": "13.2.4",
     "next-connect": "^0.13.0",
