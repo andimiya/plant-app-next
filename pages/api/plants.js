@@ -62,14 +62,18 @@ export default async function handler(req, res) {
       }
 
       const post = await db.collection(PLANT_TABLE).insertOne(objtoAdd);
-      res.status(200).json(post);
+      if (!post) {
+        res.status(500).send("Server Error");
+      } else {
+        res.status(200).json(post);
+      }
       break;
     case "GET":
       const get = await db.collection(PLANT_TABLE).findOne({
         title,
       });
       if (!get) {
-        res.status(500);
+        res.status(500).send("Server Error");
       } else {
         res.json(get);
       }
@@ -152,8 +156,8 @@ export default async function handler(req, res) {
       res.json({ ...putStrings, ...putArray });
       break;
     default:
-      res.setHeader("Allow", ["GET", "POST"]);
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.setHeader("Allow", ["GET", "PUT", "POST"]);
+      res.status(405).send(`Method ${method} Not Allowed`);
       break;
   }
 }
