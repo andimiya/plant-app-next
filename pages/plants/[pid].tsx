@@ -66,7 +66,7 @@ const Plant = () => {
     setLoading(true);
     getPlantData(title);
     setLoading(false);
-  }, [title]);
+  }, [title, plantData?.images]);
 
   const onChange = () => {};
   const items: TabsProps["items"] = [

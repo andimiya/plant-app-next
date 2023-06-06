@@ -78,6 +78,22 @@ export default async function handler(req, res) {
         res.json(get);
       }
       break;
+    case "DELETE":
+      const { imageUrl } = req.query;
+      const deleteImage = await db.collection(PLANT_TABLE).updateOne(
+        { _id: new ObjectId(id) },
+        {
+          $pull: {
+            images: imageUrl,
+          },
+        }
+      );
+      if (!deleteImage) {
+        res.status(500).send("Server Error");
+      } else {
+        res.json(deleteImage);
+      }
+      break;
     case "PUT":
       let objForUpdateArrays = {};
       let objForUpdateStrings = {};

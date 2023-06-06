@@ -1,13 +1,25 @@
 .container {
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .image {
-  height: 100%;
+  object-fit: cover;
   width: 100%;
+  height: 100%;
+}
+.image:nth-child(2n) {
+  flex-basis: 100%;
 }
 
-.imageDefault {
-  width: 100%;
-  height: 100%;
+.imageContainer {
+  border: 1px solid green;
+}
+
+.icon {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 2px 12px;
+  color: white;
 }
