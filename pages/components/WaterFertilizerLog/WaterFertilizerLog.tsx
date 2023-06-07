@@ -13,6 +13,7 @@ const WaterFertilizerLog = (props: IProps) => {
   let waterSort;
   if (props?.plantData?.watering?.length) {
     waterSort = props.plantData?.watering?.sort((a, b) => {
+      //@ts-ignore
       return b - a;
     });
   }
@@ -20,6 +21,7 @@ const WaterFertilizerLog = (props: IProps) => {
   let fertilizerSort;
   if (props?.plantData?.fertilizing?.length) {
     fertilizerSort = props.plantData?.fertilizing?.sort((a, b) => {
+      //@ts-ignore
       return b - a;
     });
   }
