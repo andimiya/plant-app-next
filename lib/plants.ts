@@ -101,7 +101,9 @@ export const addPlant = async ({
   temp,
   humidity,
   soilMix,
+  daysBetweenWatering,
   wateringConditions,
+  daysBetweenFertilizing,
   fertilizerPlan,
   plantingTime,
   pruning,
@@ -136,8 +138,14 @@ export const addPlant = async ({
   if (soilMix) {
     objForUpdate.soilMix = soilMix;
   }
+  if (daysBetweenWatering) {
+    objForUpdate.daysBetweenWatering = daysBetweenWatering;
+  }
   if (wateringConditions) {
     objForUpdate.wateringConditions = wateringConditions;
+  }
+  if (daysBetweenFertilizing) {
+    objForUpdate.daysBetweenFertilizing = daysBetweenFertilizing;
   }
   if (fertilizerPlan) {
     objForUpdate.fertilizerPlan = fertilizerPlan;
@@ -203,7 +211,9 @@ export const updatePlantDetails = async ({
   temp,
   humidity,
   soilMix,
+  daysBetweenWatering,
   wateringConditions,
+  daysBetweenFertilizing,
   fertilizerPlan,
   plantingTime,
   pruning,
@@ -238,8 +248,14 @@ export const updatePlantDetails = async ({
   if (soilMix) {
     objForUpdate.soilMix = soilMix;
   }
+  if (daysBetweenWatering) {
+    objForUpdate.daysBetweenWatering = daysBetweenWatering;
+  }
   if (wateringConditions) {
     objForUpdate.wateringConditions = wateringConditions;
+  }
+  if (daysBetweenFertilizing) {
+    objForUpdate.daysBetweenFertilizing = daysBetweenFertilizing;
   }
   if (fertilizerPlan) {
     objForUpdate.fertilizerPlan = fertilizerPlan;

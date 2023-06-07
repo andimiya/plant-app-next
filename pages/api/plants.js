@@ -36,8 +36,14 @@ export default async function handler(req, res) {
       if (req.body.soilMix) {
         objtoAdd.soilMix = req.body.soilMix;
       }
+      if (req.body.daysBetweenWatering) {
+        objtoAdd.daysBetweenWatering = req.body.daysBetweenWatering;
+      }
       if (req.body.wateringConditions) {
         objtoAdd.wateringConditions = req.body.wateringConditions;
+      }
+      if (req.body.daysBetweenFertilizing) {
+        objtoAdd.daysBetweenFertilizing = req.body.daysBetweenFertilizing;
       }
       if (req.body.fertilizerPlan) {
         objtoAdd.fertilizerPlan = req.body.fertilizerPlan;
@@ -131,8 +137,15 @@ export default async function handler(req, res) {
       if (req.body.soilMix) {
         objForUpdateStrings.soilMix = req.body.soilMix;
       }
+      if (req.body.daysBetweenWatering) {
+        objForUpdateStrings.daysBetweenWatering = req.body.daysBetweenWatering;
+      }
       if (req.body.wateringConditions) {
         objForUpdateStrings.wateringConditions = req.body.wateringConditions;
+      }
+      if (req.body.daysBetweenFertilizing) {
+        objForUpdateStrings.daysBetweenFertilizing =
+          req.body.daysBetweenFertilizing;
       }
       if (req.body.fertilizerPlan) {
         objForUpdateStrings.fertilizerPlan = req.body.fertilizerPlan;

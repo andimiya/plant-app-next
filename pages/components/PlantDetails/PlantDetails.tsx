@@ -41,8 +41,14 @@ const PlantDetails = ({ plantData, isLoading, refreshData }: IProps) => {
 
           <h2>Care</h2>
           {plantData?.soilMix && <p>Soil mix: {plantData.soilMix}</p>}
+          {plantData?.daysBetweenWatering && (
+            <p>Days between watering: {plantData.daysBetweenWatering}</p>
+          )}
           {plantData?.wateringConditions && (
             <p>Watering: {plantData.wateringConditions}</p>
+          )}
+          {plantData?.daysBetweenFertilizing && (
+            <p>Days bewteen fertilizing: {plantData.daysBetweenFertilizing}</p>
           )}
           {plantData?.fertilizerPlan && (
             <p>Fertilizer: {plantData.fertilizerPlan}</p>
