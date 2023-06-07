@@ -46,6 +46,18 @@ export const fertilizePlant = async (id: string) => {
     });
 };
 
+export const setPrimaryImage = async (id: string, imageUrl: string) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/images?id=${id}&imageUrl=${imageUrl}`;
+  return fetch(url, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
+};
+
 export const deleteImage = async (id: string, imageUrl: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}&imageUrl=${imageUrl}`;
   return fetch(url, {

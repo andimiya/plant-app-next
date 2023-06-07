@@ -4,8 +4,9 @@ import Link from "next/link";
 import TrashIcon from "../Icons/Trash";
 
 import css from "./Gallery.module.css";
-import { deleteImage } from "@/lib/plants";
+import { deleteImage, setPrimaryImage } from "@/lib/plants";
 import { Col, Row } from "antd";
+import StarIcon from "../Icons/Star";
 
 interface IProps {
   images?: string[];
@@ -33,6 +34,16 @@ export default function Gallery({ images, plantId, plantName }: IProps) {
           plantId &&
           images.map((image: any, i: number) => (
             <Col key={image} span={8}>
+              <div className={css.starIcon}>
+                {i === 0 && <StarIcon size="1x" colored={true} />}
+              </div>
+              <div className={css.starIcon}>
+                {i > 0 && (
+                  <div onClick={() => setPrimaryImage(plantId, image)}>
+                    <StarIcon size="1x" />
+                  </div>
+                )}
+              </div>
               <div className={css.icon}>
                 <div onClick={() => deleteImage(plantId, image)}>
                   <TrashIcon size="1x" />

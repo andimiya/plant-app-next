@@ -9,3 +9,11 @@
 .edit {
   color: var(--teal);
 }
+
+.star {
+  color: var(--white);
+}
+
+.starColored {
+  color: var(--teal);
+}
