@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const getAllPlants = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/allPlants`;
   return fetch(url)
@@ -22,7 +24,7 @@ export const waterPlant = async (id: string) => {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      watering: Date.now(),
+      watering: moment(),
     }),
   })
     .then((res) => res.json())
@@ -37,7 +39,7 @@ export const fertilizePlant = async (id: string) => {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      fertilizing: Date.now(),
+      fertilizing: moment(),
     }),
   })
     .then((res) => res.json())

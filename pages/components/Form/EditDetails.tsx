@@ -41,9 +41,10 @@ const EditDetails = ({
           humidity: plantData?.humidity || "",
           soilMix: plantData?.soilMix || "",
           wateringConditions: plantData?.wateringConditions || "",
-          daysBetweenWatering: plantData?.daysBetweenWatering || 0,
+          daysBetweenWatering: plantData?.daysBetweenWatering || undefined,
           fertilizerPlan: plantData?.fertilizerPlan || "",
-          daysBetweenFertilizing: plantData?.daysBetweenFertilizing || 0,
+          daysBetweenFertilizing:
+            plantData?.daysBetweenFertilizing || undefined,
           plantingTime: plantData?.plantingTime || "",
           pruning: plantData?.pruning || "",
           harvestTime: plantData?.harvestTime || "",

@@ -6,6 +6,7 @@ import FertilizerIcon from "../Icons/Fertilizer";
 import WaterDropIcon from "../Icons/WaterDrop";
 
 import css from "./PlantCard.module.css";
+import { needsWaterOrFertilizer } from "@/lib/helpers";
 
 interface IProps {
   plant: IPlantData;
@@ -19,13 +20,25 @@ const PlantCard = (props: IProps) => {
     ? plant.images[0]
     : "/default-placeholder.png";
 
-  const latestWaterDate = plant?.watering
+  const latestWaterDate: string | null = plant?.watering
     ? plant?.watering[plant?.watering?.length - 1]
     : null;
 
   const latestFertilizeDate = plant?.fertilizing
     ? plant?.fertilizing[plant?.fertilizing?.length - 1]
     : null;
+
+  const needsWater = needsWaterOrFertilizer({
+    daysUntilNeed: plant?.daysBetweenWatering,
+    lastWateredOrFertilized: plant?.watering ? plant.watering[0] : undefined,
+  });
+
+  const needsFertilizer = needsWaterOrFertilizer({
+    daysUntilNeed: plant?.daysBetweenFertilizing,
+    lastWateredOrFertilized: plant?.fertilizing
+      ? plant?.fertilizing[0]
+      : undefined,
+  });
 
   return plant ? (
     <div className={css.card}>
@@ -49,7 +62,8 @@ const PlantCard = (props: IProps) => {
               {latestWaterDate && (
                 <Card.Meta>
                   <p className={css.meta}>
-                    NEEDS WATER! <br /> Last watered:
+                    {needsWater && <div>NEEDS WATER!</div>}
+                    Last watered:
                     <br />
                     {formatDate(latestWaterDate, true)}
                   </p>
@@ -64,6 +78,7 @@ const PlantCard = (props: IProps) => {
               {latestFertilizeDate && (
                 <Card.Meta>
                   <p className={css.meta}>
+                    {needsFertilizer && <div>NEEDS FERTILIZER!</div>}
                     Last fertilized: <br />
                     {formatDate(latestFertilizeDate, true)}
                   </p>

@@ -1,8 +1,8 @@
 import moment from "moment";
 
-export const formatDate = (unix: number, short = false) => {
+export const formatDate = (timestamp: string, short = false) => {
   if (short) {
-    return moment.unix(unix).format("MMM Do, ha");
+    return moment(timestamp).format("MMM Do, ha");
   }
-  return moment.unix(unix).format("MMMM Do YYYY, h:mm a");
+  return moment(timestamp).format("MMMM Do YYYY, h:mm a");
 };

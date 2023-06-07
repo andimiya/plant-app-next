@@ -15,9 +15,9 @@
 }
 
 .meta {
-  padding: 6px;
   color: var(--white);
   font-size: 0.8rem;
+  padding-bottom: 0.5rem;
 }
 
 .card {
@@ -26,4 +26,8 @@
 
 .cardTitleContainer {
   padding: 0.2rem 0.8rem;
+}
+
+.iconButton {
+  cursor: pointer;
 }
