@@ -3,7 +3,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
-import { IAddPlant, addPlant } from "@/lib/plants";
+import { IAddPlant, addPlant } from "@/services/plants";
 import Button from "../Button/Button";
 
 import css from "./Form.module.css";
@@ -42,7 +42,7 @@ const FormAddNewPlant = () => {
       validationSchema={validation}
       onSubmit={async (values: IAddPlant) => {
         await addPlant(values);
-        push(`/plants/${values.title}`);
+        push(`/plants?title=${values.title}`);
       }}
     >
       {({ errors, touched, isSubmitting }) => (

@@ -1,5 +1,5 @@
-import clientPromise from "../../lib/mongodb";
-import { PLANT_TABLE } from "../../lib/constants";
+import clientPromise from "../../db/mongodb";
+import { PLANT_TABLE } from "../../constants/constants";
 import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
@@ -11,7 +11,11 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "POST":
-      let objtoAdd = {};
+      let objtoAdd = {
+        images: [],
+        watering: [],
+        fertilizing: [],
+      };
 
       objtoAdd.title = req.body.title;
 
@@ -79,7 +83,7 @@ export default async function handler(req, res) {
         title,
       });
       if (!get) {
-        res.status(500).send("Server Error");
+        res.status(204).send("Plant not found");
       } else {
         res.json(get);
       }
@@ -175,13 +179,18 @@ export default async function handler(req, res) {
         },
         { $push: objForUpdateArrays }
       );
-
+      if (!putArray) {
+        res.status(500).send("Unable to update plant array details");
+      }
       const putStrings = await db.collection(PLANT_TABLE).updateOne(
         {
           _id: new ObjectId(id),
         },
         { $set: objForUpdateStrings }
       );
+      if (!putStrings) {
+        res.status(500).send("Unable to update plant string details");
+      }
       res.json({ ...putStrings, ...putArray });
       break;
     default:

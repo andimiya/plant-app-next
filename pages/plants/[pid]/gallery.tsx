@@ -1,38 +1,13 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { getAllPlants, getPlant } from "@/services/plants";
+import { IPlantData } from "../[pid]";
 import Tabs from "@/components/Tabs/Tabs";
-import PlantDetails from "@/components/PlantDetails/PlantDetails";
-
-export interface IPlantData {
-  _id: string;
-  title: string;
-  images: string[];
-  watering?: string[];
-  daysBetweenWatering: number;
-  fertilizing?: string[];
-  daysBetweenFertilizing: number;
-  streetName?: string;
-  flowers?: string;
-  dateAcquired?: string;
-  humidity?: string;
-  sunlight?: string;
-  temp?: string;
-  soilMix?: string;
-  wateringConditions?: string;
-  fertilizerPlan?: string;
-  plantingTime?: string;
-  pruning?: string;
-  harvestTime?: string;
-  propogation?: string;
-  pestsDiseases?: string;
-  notes?: string;
-}
-
-export interface IProps {
+import Gallery from "@/components/Gallery/Gallery";
+interface IProps {
   plant: IPlantData;
 }
-const Plant = ({ plant }: IProps) => {
+const GalleryPage = ({ plant }: IProps) => {
   const router = useRouter();
 
   const refreshData = () => {
@@ -47,7 +22,16 @@ const Plant = ({ plant }: IProps) => {
   return (
     <div>
       <Tabs title={plant?.title} />
-      <PlantDetails plantData={plant} refreshData={refreshData} />
+      {!plant?.images?.length ? (
+        <div>Empty</div>
+      ) : (
+        <Gallery
+          images={plant.images}
+          plantId={plant._id}
+          plantName={plant.title}
+          refreshData={refreshData}
+        />
+      )}
     </div>
   );
 };
@@ -86,4 +70,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default Plant;
+export default GalleryPage;

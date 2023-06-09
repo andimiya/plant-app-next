@@ -1,5 +1,5 @@
-import clientPromise from "../../lib/mongodb";
-import { PLANT_TABLE } from "../../lib/constants";
+import clientPromise from "../../db/mongodb";
+import { PLANT_TABLE } from "../../constants/constants";
 
 export default async function handler(req, res) {
   const { method } = req;

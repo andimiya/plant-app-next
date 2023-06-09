@@ -1,4 +1,4 @@
-import { AWSConfig } from "../../lib/helpers";
+import { AWSConfig } from "../../utils/awsConfig";
 
 export default async function imageUpload(base64: string) {
   const AWS = AWSConfig();

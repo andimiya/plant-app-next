@@ -1,9 +1,8 @@
-import FormAddNewPlant from "./components/Form/AddNewPlant";
-import css from "./AddNew.module.css";
+import FormAddNewPlant from "@/components/Form/AddNewPlant";
 
 export default function AddNew() {
   return (
-    <div className={css.container}>
+    <div>
       <h1>Add a Plant</h1>
       <FormAddNewPlant />
     </div>

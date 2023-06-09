@@ -2,7 +2,7 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useRouter } from "next/navigation";
-import { IUpdatePlantDetails, updatePlantDetails } from "@/lib/plants";
+import { IUpdatePlantDetails, updatePlantDetails } from "@/services/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
 import Button from "../Button/Button";
 import css from "./Form.module.css";
@@ -10,7 +10,6 @@ import css from "./Form.module.css";
 interface IProps {
   plantData?: IPlantData;
   setEdit: any;
-  isLoading: boolean;
   refreshData: any;
 }
 const validation = Yup.object().shape({
@@ -19,17 +18,11 @@ const validation = Yup.object().shape({
   title: Yup.string().required("Plant name is required"),
 });
 
-const EditDetails = ({
-  plantData,
-  setEdit,
-  isLoading,
-  refreshData,
-}: IProps) => {
+const EditDetails = ({ plantData, setEdit, refreshData }: IProps) => {
   const { push } = useRouter();
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
       <Formik
         initialValues={{
           title: plantData?.title || "",
@@ -58,7 +51,7 @@ const EditDetails = ({
           await updatePlantDetails(values);
           setEdit(false);
           if (plantData?.title !== values.title) {
-            push(`/plants/${values.title}`);
+            push(`/plants?title=${values.title}`);
           }
           refreshData(values.title);
         }}

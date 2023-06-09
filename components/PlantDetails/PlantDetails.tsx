@@ -7,16 +7,13 @@ import EditDetails from "../Form/EditDetails";
 
 interface IProps {
   plantData?: IPlantData;
-  isLoading: boolean;
   refreshData: any;
 }
 
-const PlantDetails = ({ plantData, isLoading, refreshData }: IProps) => {
+const PlantDetails = ({ plantData, refreshData }: IProps) => {
   const [edit, setEdit] = useState<boolean>(false);
 
-  return isLoading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <div className={css.container}>
       <div className={css.edit}>
         {!edit && (
@@ -74,7 +71,6 @@ const PlantDetails = ({ plantData, isLoading, refreshData }: IProps) => {
           <EditDetails
             plantData={plantData}
             setEdit={setEdit}
-            isLoading={isLoading}
             refreshData={refreshData}
           />
         </div>

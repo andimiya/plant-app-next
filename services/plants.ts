@@ -2,23 +2,38 @@ import moment from "moment";
 
 export const getAllPlants = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/allPlants`;
-  return fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "*",
+      },
     });
+    return res.json();
+  } catch (error) {
+    // data = JSON.stringify(error);
+  }
 };
 
 export const getPlant = async (title: string) => {
+  let data = [];
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?title=${title}`;
-  return fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "*",
+      },
     });
+
+    data = await res.json();
+  } catch (error) {
+    // throw new Error(`Error fetching plant: ${title}: ${error}`);
+  }
+  return data;
 };
 
-export const waterPlant = async (id: string) => {
+export const waterPlant = (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
   return fetch(url, {
     method: "PUT",
@@ -33,7 +48,7 @@ export const waterPlant = async (id: string) => {
     });
 };
 
-export const fertilizePlant = async (id: string) => {
+export const fertilizePlant = (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
   return fetch(url, {
     method: "PUT",
@@ -48,7 +63,7 @@ export const fertilizePlant = async (id: string) => {
     });
 };
 
-export const setPrimaryImage = async (id: string, imageUrl: string) => {
+export const setPrimaryImage = (id: string, imageUrl: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/images?id=${id}&imageUrl=${imageUrl}`;
   return fetch(url, {
     method: "PUT",
@@ -60,7 +75,7 @@ export const setPrimaryImage = async (id: string, imageUrl: string) => {
     });
 };
 
-export const deleteImage = async (id: string, imageUrl: string) => {
+export const deleteImage = (id: string, imageUrl: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}&imageUrl=${imageUrl}`;
   return fetch(url, {
     method: "DELETE",
@@ -92,7 +107,7 @@ export interface IAddPlant {
   pestsDiseases?: string;
   notes?: string;
 }
-export const addPlant = async ({
+export const addPlant = ({
   title,
   streetName,
   flowers,
@@ -201,7 +216,7 @@ export interface IUpdatePlantDetails {
   pestsDiseases?: string;
   notes?: string;
 }
-export const updatePlantDetails = async ({
+export const updatePlantDetails = ({
   id,
   title,
   streetName,

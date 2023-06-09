@@ -1,40 +1,15 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { getAllPlants, getPlant } from "@/services/plants";
+import { IPlantData } from "../[pid]";
 import Tabs from "@/components/Tabs/Tabs";
-import PlantDetails from "@/components/PlantDetails/PlantDetails";
+import WaterFertilizerLog from "@/components/WaterFertilizerLog/WaterFertilizerLog";
 
-export interface IPlantData {
-  _id: string;
-  title: string;
-  images: string[];
-  watering?: string[];
-  daysBetweenWatering: number;
-  fertilizing?: string[];
-  daysBetweenFertilizing: number;
-  streetName?: string;
-  flowers?: string;
-  dateAcquired?: string;
-  humidity?: string;
-  sunlight?: string;
-  temp?: string;
-  soilMix?: string;
-  wateringConditions?: string;
-  fertilizerPlan?: string;
-  plantingTime?: string;
-  pruning?: string;
-  harvestTime?: string;
-  propogation?: string;
-  pestsDiseases?: string;
-  notes?: string;
-}
-
-export interface IProps {
+interface IProps {
   plant: IPlantData;
 }
-const Plant = ({ plant }: IProps) => {
+const LogPage = ({ plant }: IProps) => {
   const router = useRouter();
-
   const refreshData = () => {
     router.replace(router.asPath);
   };
@@ -47,7 +22,7 @@ const Plant = ({ plant }: IProps) => {
   return (
     <div>
       <Tabs title={plant?.title} />
-      <PlantDetails plantData={plant} refreshData={refreshData} />
+      <WaterFertilizerLog plant={plant} />
     </div>
   );
 };
@@ -59,6 +34,7 @@ interface IParam {
 }
 export async function getStaticProps({ params }: IParam) {
   const plantData = await getPlant(params.pid);
+
   // redirect to main blog posts page if post doesn't exist, or any other page you want
   if (!plantData) return { redirect: "/", permanent: false };
 
@@ -86,4 +62,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default Plant;
+export default LogPage;

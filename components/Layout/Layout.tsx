@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
-import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import { Quicksand } from "next/font/google";
 import { ToastContainer, Slide } from "react-toastify";
+
 import css from "./Layout.module.css";
 
 interface Props {

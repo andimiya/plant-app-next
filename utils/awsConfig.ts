@@ -21,6 +21,7 @@ export const needsWaterOrFertilizer = ({
   if (!daysUntilNeed || !lastWateredOrFertilized) {
     return false;
   }
+
   const nextWaterDate = moment(lastWateredOrFertilized).add(
     daysUntilNeed,
     "days"

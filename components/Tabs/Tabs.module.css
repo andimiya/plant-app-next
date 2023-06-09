@@ -1,0 +1,30 @@
+.container {
+  margin-bottom: 1rem;
+}
+
+.linkContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.linkContainer a {
+  text-decoration: none;
+  color: var(--white);
+  flex: 1;
+}
+
+.isSelected {
+  display: inline-block;
+  position: relative;
+}
+
+.isSelected::after {
+  content: "";
+  height: 2px;
+  width: 40%;
+  background: var(--white);
+  position: absolute;
+  left: calc(40% - 10%);
+  bottom: -5px;
+}

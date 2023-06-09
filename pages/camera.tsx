@@ -2,12 +2,11 @@ import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import imageUpload from "./api/addImageToS3";
 import { useState } from "react";
-import ImagePreview from "./components/ImagePreview/ImagePreview";
-import DropdownComponent from "./components/Dropdown/Dropdown";
+import { useRouter } from "next/router";
+import DropdownComponent from "@/components/Dropdown/Dropdown";
+import ImagePreview from "@/components/ImagePreview/ImagePreview";
 
 import css from "./Camera.module.css";
-import { useRouter } from "next/router";
-// import { Button } from "semantic-ui-react";
 
 export default function CameraPage() {
   const router = useRouter();

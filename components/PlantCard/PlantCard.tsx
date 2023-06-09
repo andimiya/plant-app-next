@@ -1,12 +1,12 @@
 import { IPlantData } from "@/pages/plants/[pid]";
-import { formatDate } from "@/lib/utils";
+import { formatDate, sortByTimestamp } from "@/utils/utils";
 import { Card } from "semantic-ui-react";
 import Link from "next/link";
 import FertilizerIcon from "../Icons/Fertilizer";
 import WaterDropIcon from "../Icons/WaterDrop";
 
 import css from "./PlantCard.module.css";
-import { needsWaterOrFertilizer } from "@/lib/helpers";
+import { needsWaterOrFertilizer } from "@/components/helpers";
 
 interface IProps {
   plant: IPlantData;
@@ -20,24 +20,18 @@ const PlantCard = (props: IProps) => {
     ? plant.images[0]
     : "/default-placeholder.png";
 
-  const latestWaterDate: string | null = plant?.watering
-    ? plant?.watering[plant?.watering?.length - 1]
-    : null;
+  const latestWaterDate: string = sortByTimestamp(plant?.watering)[0];
 
-  const latestFertilizeDate = plant?.fertilizing
-    ? plant?.fertilizing[plant?.fertilizing?.length - 1]
-    : null;
+  const latestFertilizeDate: string = sortByTimestamp(plant?.fertilizing)[0];
 
   const needsWater = needsWaterOrFertilizer({
     daysUntilNeed: plant?.daysBetweenWatering,
-    lastWateredOrFertilized: plant?.watering ? plant.watering[0] : undefined,
+    lastWateredOrFertilized: latestWaterDate,
   });
 
   const needsFertilizer = needsWaterOrFertilizer({
     daysUntilNeed: plant?.daysBetweenFertilizing,
-    lastWateredOrFertilized: plant?.fertilizing
-      ? plant?.fertilizing[0]
-      : undefined,
+    lastWateredOrFertilized: latestFertilizeDate,
   });
 
   return plant ? (
@@ -61,12 +55,12 @@ const PlantCard = (props: IProps) => {
               <WaterDropIcon size="2x" />
               {latestWaterDate && (
                 <Card.Meta>
-                  <p className={css.meta}>
+                  <div className={css.meta}>
                     {needsWater && <div>NEEDS WATER!</div>}
                     Last watered:
                     <br />
                     {formatDate(latestWaterDate, true)}
-                  </p>
+                  </div>
                 </Card.Meta>
               )}
             </div>
@@ -77,11 +71,11 @@ const PlantCard = (props: IProps) => {
               <FertilizerIcon size="2x" />
               {latestFertilizeDate && (
                 <Card.Meta>
-                  <p className={css.meta}>
+                  <div className={css.meta}>
                     {needsFertilizer && <div>NEEDS FERTILIZER!</div>}
                     Last fertilized: <br />
                     {formatDate(latestFertilizeDate, true)}
-                  </p>
+                  </div>
                 </Card.Meta>
               )}{" "}
             </div>

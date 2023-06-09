@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { IPlantData } from "./plants/[pid]";
-import { fertilizePlant, getAllPlants, waterPlant } from "../lib/plants";
-import PlantCard from "./components/PlantCard/PlantCard";
+import { fertilizePlant, getAllPlants, waterPlant } from "../services/plants";
+import PlantCard from "@/components/PlantCard/PlantCard";
 
 export interface IProps {
   allPlants: IPlantData[];
 }
 
-const Home = ({ allPlants }: IProps) => {
-  const [allPlantsData, setAllPlantsData] = useState<IPlantData[]>(allPlants);
-  const [isLoading, setLoading] = useState(false);
+const Home = () => {
+  const [allPlantsData, setAllPlantsData] = useState<IPlantData[]>([]);
 
   async function fetchAllPlants() {
     const data = await getAllPlants();
@@ -17,14 +16,8 @@ const Home = ({ allPlants }: IProps) => {
   }
 
   useEffect(() => {
-    setLoading(true);
     fetchAllPlants();
-    setLoading(false);
   }, []);
-
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
 
   const water = async (id: string) => {
     await waterPlant(id);
@@ -40,7 +33,7 @@ const Home = ({ allPlants }: IProps) => {
     <div>
       <h1 style={{ fontSize: "1.5rem", fontWeight: "300" }}>All Plants</h1>
       <div className="ui centered cards">
-        {allPlantsData.length &&
+        {allPlantsData?.length &&
           allPlantsData.map((plant: IPlantData) => {
             return (
               <PlantCard
@@ -54,15 +47,6 @@ const Home = ({ allPlants }: IProps) => {
       </div>
     </div>
   );
-};
-
-export const getServerSideProps = async () => {
-  const jsonData = await getAllPlants();
-  return {
-    props: {
-      allPlants: jsonData,
-    },
-  };
 };
 
 export default Home;

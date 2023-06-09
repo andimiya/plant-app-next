@@ -1,20 +1,25 @@
-// import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import TrashIcon from "../Icons/Trash";
+import { deleteImage, setPrimaryImage } from "@/services/plants";
+import { Col, Row } from "antd";
 
 import css from "./Gallery.module.css";
-import { deleteImage, setPrimaryImage } from "@/lib/plants";
-import { Col, Row } from "antd";
 import StarIcon from "../Icons/Star";
+import TrashIcon from "../Icons/Trash";
 
 interface IProps {
   images?: string[];
   plantId?: string;
   plantName?: string;
+  refreshData: any;
 }
 
-export default function Gallery({ images, plantId, plantName }: IProps) {
+export default function Gallery({
+  images,
+  plantId,
+  plantName,
+  refreshData,
+}: IProps) {
   return (
     <div className={css.container}>
       <Row gutter={[16, 16]}>
@@ -39,13 +44,23 @@ export default function Gallery({ images, plantId, plantName }: IProps) {
               </div>
               <div className={css.starIcon}>
                 {i > 0 && (
-                  <div onClick={() => setPrimaryImage(plantId, image)}>
+                  <div
+                    onClick={() => {
+                      setPrimaryImage(plantId, image);
+                      refreshData();
+                    }}
+                  >
                     <StarIcon size="1x" />
                   </div>
                 )}
               </div>
               <div className={css.icon}>
-                <div onClick={() => deleteImage(plantId, image)}>
+                <div
+                  onClick={() => {
+                    deleteImage(plantId, image);
+                    refreshData();
+                  }}
+                >
                   <TrashIcon size="1x" />
                 </div>
               </div>
