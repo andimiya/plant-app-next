@@ -141,15 +141,9 @@ export default async function handler(req, res) {
       if (req.body.soilMix) {
         objForUpdateStrings.soilMix = req.body.soilMix;
       }
-      if (req.body.daysBetweenWatering) {
-        objForUpdateStrings.daysBetweenWatering = req.body.daysBetweenWatering;
-      }
+
       if (req.body.wateringConditions) {
         objForUpdateStrings.wateringConditions = req.body.wateringConditions;
-      }
-      if (req.body.daysBetweenFertilizing) {
-        objForUpdateStrings.daysBetweenFertilizing =
-          req.body.daysBetweenFertilizing;
       }
       if (req.body.fertilizerPlan) {
         objForUpdateStrings.fertilizerPlan = req.body.fertilizerPlan;
@@ -173,25 +167,38 @@ export default async function handler(req, res) {
         objForUpdateStrings.notes = req.body.notes;
       }
 
-      const putArray = await db.collection(PLANT_TABLE).updateOne(
+      if (req.body.daysBetweenWatering === -1) {
+        await db.collection(PLANT_TABLE).updateOne(
+          {
+            _id: new ObjectId(id),
+          },
+          { $set: { daysBetweenWatering: undefined } }
+        );
+      } else {
+        objForUpdateStrings.daysBetweenWatering = req.body.daysBetweenWatering;
+      }
+
+      if (req.body.daysBetweenFertilizing === -1) {
+        await db.collection(PLANT_TABLE).updateOne(
+          {
+            _id: new ObjectId(id),
+          },
+          { $set: { daysBetweenFertilizing: undefined } }
+        );
+      } else {
+        objForUpdateStrings.daysBetweenFertilizing =
+          req.body.daysBetweenFertilizing;
+      }
+      const putArray = await db.collection(PLANT_TABLE).updateMany(
         {
           _id: new ObjectId(id),
         },
-        { $push: objForUpdateArrays }
+        { $push: objForUpdateArrays, $set: objForUpdateStrings }
       );
       if (!putArray) {
         res.status(500).send("Unable to update plant array details");
       }
-      const putStrings = await db.collection(PLANT_TABLE).updateOne(
-        {
-          _id: new ObjectId(id),
-        },
-        { $set: objForUpdateStrings }
-      );
-      if (!putStrings) {
-        res.status(500).send("Unable to update plant string details");
-      }
-      res.json({ ...putStrings, ...putArray });
+      res.json({ ...putArray });
       break;
     default:
       res.setHeader("Allow", ["GET", "PUT", "POST"]);

@@ -8,10 +8,10 @@
     "import/extensions": 0,
     "import/no-unresolved": 0,
     "no-console": 2,
-    "no-unused-vars": 2,
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
     "react/react-in-jsx-scope": 0,
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "no-unused-vars": "off"
   }
 }

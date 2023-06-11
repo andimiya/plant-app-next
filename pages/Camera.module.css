@@ -1,3 +1,14 @@
 .imagePreview {
   margin-top: 2rem;
 }
+
+.saveButton,
+.cancelButton {
+  padding: 0.5rem 0.8rem;
+  margin: 0 auto;
+  font-size: 0.8rem;
+}
+
+.cancelButton {
+  margin-top: 1rem;
+}

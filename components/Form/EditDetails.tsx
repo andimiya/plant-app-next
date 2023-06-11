@@ -13,8 +13,18 @@ interface IProps {
   refreshData: any;
 }
 const validation = Yup.object().shape({
-  daysBetweenWatering: Yup.number().typeError("Must be a number"),
-  daysBetweenFertilizing: Yup.number().typeError("Must be a number"),
+  daysBetweenWatering: Yup.number()
+    .transform((currentValue, originalValue) => {
+      return originalValue === "" ? -1 : currentValue;
+    })
+    .nullable()
+    .typeError("Must be a number"),
+  daysBetweenFertilizing: Yup.number()
+    .transform((currentValue, originalValue) => {
+      return originalValue === "" ? -1 : currentValue;
+    })
+    .nullable()
+    .typeError("Must be a number"),
   title: Yup.string().required("Plant name is required"),
 });
 
@@ -181,12 +191,7 @@ const EditDetails = ({ plantData, setEdit, refreshData }: IProps) => {
               as="textarea"
             />
             <div className={css.button}>
-              <Button
-                buttonText="Save"
-                variant="primary"
-                disabled={isSubmitting}
-                submit
-              />
+              <Button buttonText="Save" disabled={isSubmitting} submit />
             </div>
           </Form>
         )}

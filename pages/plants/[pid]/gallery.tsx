@@ -4,6 +4,7 @@ import { getAllPlants, getPlant } from "@/services/plants";
 import { IPlantData } from "../[pid]";
 import Tabs from "@/components/Tabs/Tabs";
 import Gallery from "@/components/Gallery/Gallery";
+import PIDHeader from "@/components/PIDHeader/PIDHeader";
 interface IProps {
   plant: IPlantData;
 }
@@ -21,7 +22,7 @@ const GalleryPage = ({ plant }: IProps) => {
 
   return (
     <div>
-      <Tabs title={plant?.title} />
+      <PIDHeader title={plant?.title} image={plant?.images[0]} />
       {!plant?.images?.length ? (
         <div>Empty</div>
       ) : (

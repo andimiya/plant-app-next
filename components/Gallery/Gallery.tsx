@@ -2,10 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { deleteImage, setPrimaryImage } from "@/services/plants";
 import { Col, Row } from "antd";
+import Icon from "../Icons/Icon";
+import {
+  faTrashCan,
+  faStar,
+  faCamera,
+} from "@fortawesome/free-solid-svg-icons";
 
 import css from "./Gallery.module.css";
-import StarIcon from "../Icons/Star";
-import TrashIcon from "../Icons/Trash";
 
 interface IProps {
   images?: string[];
@@ -25,14 +29,9 @@ export default function Gallery({
       <Row gutter={[16, 16]}>
         <Col span={8}>
           <Link href={`/camera?id=${plantId}&name=${plantName}`}>
-            <Image
-              alt="image"
-              className={css.imageDefault}
-              src="/camera-placeholder.jpg"
-              width={50}
-              height={60}
-              unoptimized
-            />
+            <div className={css.uploadImage}>
+              <Icon iconName={faCamera} size="2x" color="#fff" />
+            </div>
           </Link>
         </Col>
         {images &&
@@ -40,7 +39,9 @@ export default function Gallery({
           images.map((image: any, i: number) => (
             <Col key={image} span={8}>
               <div className={css.starIcon}>
-                {i === 0 && <StarIcon size="1x" colored={true} />}
+                {i === 0 && (
+                  <Icon iconName={faStar} size="1x" color="var(--teal)" />
+                )}
               </div>
               <div className={css.starIcon}>
                 {i > 0 && (
@@ -50,7 +51,7 @@ export default function Gallery({
                       refreshData();
                     }}
                   >
-                    <StarIcon size="1x" />
+                    <Icon iconName={faStar} size="1x" color="var(--white)" />
                   </div>
                 )}
               </div>
@@ -61,7 +62,7 @@ export default function Gallery({
                     refreshData();
                   }}
                 >
-                  <TrashIcon size="1x" />
+                  <Icon iconName={faTrashCan} size="1x" />
                 </div>
               </div>
               <Image

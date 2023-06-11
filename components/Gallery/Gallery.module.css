@@ -31,3 +31,12 @@
   left: 0;
   margin-left: 8px;
 }
+
+.uploadImage {
+  border-radius: 6px;
+  background-color: gray;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

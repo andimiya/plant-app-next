@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { getAllPlants, getPlant } from "@/services/plants";
 import Tabs from "@/components/Tabs/Tabs";
 import PlantDetails from "@/components/PlantDetails/PlantDetails";
+import Image from "next/image";
+import PIDHeader from "@/components/PIDHeader/PIDHeader";
 
 export interface IPlantData {
   _id: string;
@@ -43,10 +45,9 @@ const Plant = ({ plant }: IProps) => {
   }, []);
 
   if (router.isFallback) return null;
-
   return (
     <div>
-      <Tabs title={plant?.title} />
+      <PIDHeader title={plant?.title} image={plant?.images[0]} />
       <PlantDetails plantData={plant} refreshData={refreshData} />
     </div>
   );

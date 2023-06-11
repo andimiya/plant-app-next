@@ -64,7 +64,7 @@ export const fertilizePlant = (id: string) => {
 };
 
 export const setPrimaryImage = (id: string, imageUrl: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/images?id=${id}&imageUrl=${imageUrl}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/images?id=${id}&imageUrl=${imageUrl}`;
   return fetch(url, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -238,6 +238,7 @@ export const updatePlantDetails = ({
   notes,
 }: IUpdatePlantDetails) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
+  console.log(daysBetweenFertilizing, "days between");
   let objForUpdate: IUpdatePlantDetails = {};
   if (title) {
     objForUpdate.title = title;

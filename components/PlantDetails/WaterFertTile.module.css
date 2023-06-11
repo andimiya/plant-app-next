@@ -1,0 +1,25 @@
+.tile {
+  border: 1px solid var(--white);
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  min-height: 111px;
+  height: 100%;
+  flex: 1 50%;
+}
+
+.header {
+  font-size: 1.1rem;
+  padding-bottom: 5px;
+}
+
+.bodyText {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  padding: 4px;
+}
+
+.link {
+  color: var(--teal);
+  cursor: pointer;
+}

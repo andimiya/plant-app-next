@@ -1,10 +1,14 @@
 import { IPlantData } from "@/pages/plants/[pid]";
 import { useState } from "react";
-import EditIcon from "../Icons/Edit";
+import EditDetails from "../Form/EditDetails";
+import { faDroplet, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import Icon from "../Icons/Icon";
 
 import css from "./PlantDetails.module.css";
-import EditDetails from "../Form/EditDetails";
-
+import { nextWaterOrFertiizeDate } from "../helpers";
+import WaterFertTile from "./WaterFertTile";
+import EditFertilizerDetails from "../Form/EditFertilizerDetails";
+import EditWaterDetails from "../Form/EditWaterDetails";
 interface IProps {
   plantData?: IPlantData;
   refreshData: any;
@@ -12,13 +16,43 @@ interface IProps {
 
 const PlantDetails = ({ plantData, refreshData }: IProps) => {
   const [edit, setEdit] = useState<boolean>(false);
+  const [fertilizerEdit, setFertilizerEdit] = useState<boolean>(false);
+  const [waterEdit, setWaterEdit] = useState<boolean>(false);
 
   return (
     <div className={css.container}>
+      <div className={css.tilesContainer}>
+        <WaterFertTile
+          daysUntilNeed={plantData?.daysBetweenWatering}
+          waterOrFertilizeArray={plantData?.watering}
+          isWater={true}
+          setEdit={setWaterEdit}
+        />
+        <WaterFertTile
+          daysUntilNeed={plantData?.daysBetweenFertilizing}
+          waterOrFertilizeArray={plantData?.fertilizing}
+          isWater={false}
+          setEdit={setFertilizerEdit}
+        />
+      </div>
+      {fertilizerEdit && (
+        <EditFertilizerDetails
+          plantData={plantData}
+          setFertilizerEdit={setFertilizerEdit}
+          refreshData={refreshData}
+        />
+      )}
+      {waterEdit && (
+        <EditWaterDetails
+          plantData={plantData}
+          setWaterEdit={setWaterEdit}
+          refreshData={refreshData}
+        />
+      )}
       <div className={css.edit}>
         {!edit && (
           <div onClick={() => setEdit(!edit)}>
-            <EditIcon />
+            <Icon iconName={faPenToSquare} size="1x" color="var(--teal)" />
           </div>
         )}
       </div>

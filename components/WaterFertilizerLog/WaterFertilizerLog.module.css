@@ -13,3 +13,7 @@
   margin: 4px;
   font-weight: 300;
 }
+
+.iconButton {
+  cursor: pointer;
+}

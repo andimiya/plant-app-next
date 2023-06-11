@@ -1,10 +1,11 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
 import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import imageUpload from "./api/addImageToS3";
-import { useState } from "react";
-import { useRouter } from "next/router";
 import DropdownComponent from "@/components/Dropdown/Dropdown";
 import ImagePreview from "@/components/ImagePreview/ImagePreview";
+import Button, { Variants } from "@/components/Button/Button";
 
 import css from "./Camera.module.css";
 
@@ -29,6 +30,11 @@ export default function CameraPage() {
       });
   };
 
+  const discardImage = () => {
+    setDataUri("");
+    setImageUrl("");
+  };
+
   async function handleTakePhoto(dataUri: any) {
     setDataUri(dataUri);
     const imageUrl = await imageUpload(dataUri);
@@ -40,12 +46,22 @@ export default function CameraPage() {
       <h1>Take a Picture</h1>
       {dataUri ? (
         <>
-          {!router.query.length ? (
+          {!router.query.name ? (
             <DropdownComponent handleClick={handleClick} />
           ) : (
-            <button onClick={() => handleClick(router.query.toString())}>
-              {`Save Image to ${router.query.name}`}
-            </button>
+            <>
+              <Button
+                buttonText={`Save Image to ${router.query.name}`}
+                handleClick={() => handleClick(router.query.toString())}
+                className={css.saveButton}
+              />
+              <Button
+                buttonText="Cancel"
+                handleClick={() => discardImage()}
+                variant={Variants.CANCEL}
+                className={css.cancelButton}
+              />
+            </>
           )}
           <div className={css.imagePreview}>
             <ImagePreview dataUri={dataUri} />

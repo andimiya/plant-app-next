@@ -2,11 +2,11 @@ import { IPlantData } from "@/pages/plants/[pid]";
 import { formatDate, sortByTimestamp } from "@/utils/utils";
 import { Card } from "semantic-ui-react";
 import Link from "next/link";
-import FertilizerIcon from "../Icons/Fertilizer";
-import WaterDropIcon from "../Icons/WaterDrop";
 
 import css from "./PlantCard.module.css";
 import { needsWaterOrFertilizer } from "@/components/helpers";
+import { faDroplet, faSeedling } from "@fortawesome/free-solid-svg-icons";
+import Icon from "../Icons/Icon";
 
 interface IProps {
   plant: IPlantData;
@@ -52,7 +52,7 @@ const PlantCard = (props: IProps) => {
         <Card.Content extra>
           <div className={css.ctaContainer}>
             <div onClick={() => water(plant._id)} className={css.iconButton}>
-              <WaterDropIcon size="2x" />
+              <Icon iconName={faDroplet} color="var(--teal)" size="2x" />{" "}
               {latestWaterDate && (
                 <Card.Meta>
                   <div className={css.meta}>
@@ -68,7 +68,7 @@ const PlantCard = (props: IProps) => {
               onClick={() => fertilize(plant._id)}
               className={css.iconButton}
             >
-              <FertilizerIcon size="2x" />
+              <Icon iconName={faSeedling} size="2x" color="var(--rust)" />
               {latestFertilizeDate && (
                 <Card.Meta>
                   <div className={css.meta}>

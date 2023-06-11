@@ -4,6 +4,7 @@ import { getAllPlants, getPlant } from "@/services/plants";
 import { IPlantData } from "../[pid]";
 import Tabs from "@/components/Tabs/Tabs";
 import WaterFertilizerLog from "@/components/WaterFertilizerLog/WaterFertilizerLog";
+import PIDHeader from "@/components/PIDHeader/PIDHeader";
 
 interface IProps {
   plant: IPlantData;
@@ -21,8 +22,8 @@ const LogPage = ({ plant }: IProps) => {
 
   return (
     <div>
-      <Tabs title={plant?.title} />
-      <WaterFertilizerLog plant={plant} />
+      <PIDHeader title={plant?.title} image={plant?.images[0]} />
+      <WaterFertilizerLog plant={plant} refreshData={refreshData} />
     </div>
   );
 };

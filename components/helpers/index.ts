@@ -1,4 +1,5 @@
-import moment from "moment";
+import { sortByTimestamp } from "@/utils/utils";
+import moment, { Moment } from "moment";
 
 export const AWSConfig = () => {
   var AWS = require("aws-sdk");
@@ -32,4 +33,25 @@ export const needsWaterOrFertilizer = ({
   } else {
     return true;
   }
+};
+
+interface INextWaterDate {
+  daysUntilNeed: number | undefined;
+  waterOrFertilizeArray: string[] | undefined; // moment timestamp 2023-06-07T04:23:46.376Z
+}
+export const nextWaterOrFertiizeDate = ({
+  daysUntilNeed,
+  waterOrFertilizeArray,
+}: INextWaterDate): string | null => {
+  if (!daysUntilNeed || !waterOrFertilizeArray?.length) {
+    return null;
+  }
+
+  const lastWateredOrFertilized = sortByTimestamp(waterOrFertilizeArray)[0];
+
+  const nextWaterDate = moment(lastWateredOrFertilized).add(
+    daysUntilNeed,
+    "days"
+  );
+  return moment(nextWaterDate).format("MMM Do");
 };

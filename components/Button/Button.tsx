@@ -10,36 +10,36 @@ export const cls = (input: string) =>
     .join(" ")
     .trim();
 
+export enum Variants {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  CANCEL = "cancel",
+}
+
 interface IButton {
   buttonText: string;
   className?: string | null;
-  variant?: "primary";
+  variant?: Variants;
   disabled?: boolean;
   handleClick?: any;
-  submit: boolean;
+  submit?: boolean;
 }
 
 const Button = ({
   buttonText,
   className = null,
-  variant = "primary",
+  variant = Variants.PRIMARY,
   disabled = false,
   handleClick = null,
   submit = false,
 }: IButton) => {
-  const classes = {
-    variant: {
-      primary: css.primary,
-    },
-  };
-
   return (
     <button
       disabled={disabled}
       type={submit ? "submit" : "button"}
       onClick={handleClick}
       className={cls(`
-      ${classes.variant[variant]}
+      ${css[variant]}
       ${className}
     `)}
     >

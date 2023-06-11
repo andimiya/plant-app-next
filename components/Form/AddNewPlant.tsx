@@ -45,7 +45,7 @@ const FormAddNewPlant = () => {
         push(`/plants?title=${values.title}`);
       }}
     >
-      {({ errors, touched, isSubmitting }) => (
+      {({ errors, touched, isSubmitting, isValid }) => (
         <Form className={css.form}>
           <Field
             className={css.input}
@@ -168,12 +168,7 @@ const FormAddNewPlant = () => {
             as="textarea"
           />
           <div className={css.button}>
-            <Button
-              buttonText="Save"
-              variant="primary"
-              disabled={isSubmitting}
-              submit
-            />
+            <Button buttonText="Save" disabled={!isValid} submit />
           </div>
         </Form>
       )}
