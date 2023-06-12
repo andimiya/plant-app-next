@@ -10,12 +10,16 @@ interface IProp {
   waterOrFertilizeArray?: string[] | undefined;
   isWater?: boolean;
   setEdit: any;
+  water: any;
+  fertilize: any;
 }
 const WaterFertTile = ({
   daysUntilNeed,
   waterOrFertilizeArray,
   isWater = true,
   setEdit,
+  water,
+  fertilize,
 }: IProp) => {
   let daysText = daysUntilNeed === 1 ? "day" : "days";
   return (
@@ -38,17 +42,41 @@ const WaterFertTile = ({
             Every {daysUntilNeed} {daysText}
           </div>
           <div>
-            {isWater ? (
-              <span>Next water: </span>
-            ) : (
-              <span>Next fertilizer: </span>
-            )}
-            <div>
-              {nextWaterOrFertiizeDate({
-                daysUntilNeed,
-                waterOrFertilizeArray,
-              })}
-            </div>
+            {waterOrFertilizeArray &&
+              waterOrFertilizeArray.length > 0 &&
+              isWater && (
+                <span>
+                  Next water:{" "}
+                  {nextWaterOrFertiizeDate({
+                    daysUntilNeed,
+                    waterOrFertilizeArray,
+                  })}
+                </span>
+              )}
+            {!waterOrFertilizeArray?.length ||
+              (waterOrFertilizeArray.length === 0 && isWater && (
+                <div className={css.link} onClick={() => water()}>
+                  Log water
+                </div>
+              ))}
+
+            {waterOrFertilizeArray &&
+              waterOrFertilizeArray.length > 0 &&
+              !isWater && (
+                <span>
+                  Next water:{" "}
+                  {nextWaterOrFertiizeDate({
+                    daysUntilNeed,
+                    waterOrFertilizeArray,
+                  })}
+                </span>
+              )}
+            {!waterOrFertilizeArray?.length ||
+              (waterOrFertilizeArray.length === 0 && !isWater && (
+                <div className={css.link} onClick={() => fertilize()}>
+                  Log fertilizer
+                </div>
+              ))}
           </div>{" "}
         </div>
       ) : (

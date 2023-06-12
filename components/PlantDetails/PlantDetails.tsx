@@ -11,10 +11,12 @@ import EditFertilizerDetails from "../Form/EditFertilizerDetails";
 import EditWaterDetails from "../Form/EditWaterDetails";
 interface IProps {
   plantData?: IPlantData;
+  water: any;
+  fertilize: any;
   refreshData: any;
 }
 
-const PlantDetails = ({ plantData, refreshData }: IProps) => {
+const PlantDetails = ({ plantData, refreshData, water, fertilize }: IProps) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [fertilizerEdit, setFertilizerEdit] = useState<boolean>(false);
   const [waterEdit, setWaterEdit] = useState<boolean>(false);
@@ -27,12 +29,16 @@ const PlantDetails = ({ plantData, refreshData }: IProps) => {
           waterOrFertilizeArray={plantData?.watering}
           isWater={true}
           setEdit={setWaterEdit}
+          water={water}
+          fertilize={fertilize}
         />
         <WaterFertTile
           daysUntilNeed={plantData?.daysBetweenFertilizing}
           waterOrFertilizeArray={plantData?.fertilizing}
           isWater={false}
           setEdit={setFertilizerEdit}
+          water={water}
+          fertilize={fertilize}
         />
       </div>
       {fertilizerEdit && (

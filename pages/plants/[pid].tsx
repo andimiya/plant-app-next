@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { getAllPlants, getPlant } from "@/services/plants";
+import {
+  fertilizePlant,
+  getAllPlants,
+  getPlant,
+  waterPlant,
+} from "@/services/plants";
 import Tabs from "@/components/Tabs/Tabs";
 import PlantDetails from "@/components/PlantDetails/PlantDetails";
 import Image from "next/image";
@@ -37,6 +42,16 @@ export interface IProps {
 const Plant = ({ plant }: IProps) => {
   const router = useRouter();
 
+  const water = async () => {
+    await waterPlant(plant._id);
+    refreshData();
+  };
+
+  const fertilize = async () => {
+    await fertilizePlant(plant._id);
+    refreshData();
+  };
+
   const refreshData = () => {
     router.replace(router.asPath);
   };
@@ -48,7 +63,12 @@ const Plant = ({ plant }: IProps) => {
   return (
     <div>
       <PIDHeader title={plant?.title} image={plant?.images[0]} />
-      <PlantDetails plantData={plant} refreshData={refreshData} />
+      <PlantDetails
+        plantData={plant}
+        water={water}
+        fertilize={fertilize}
+        refreshData={refreshData}
+      />
     </div>
   );
 };
