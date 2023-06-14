@@ -1,4 +1,6 @@
 import moment from "moment";
+import { formData } from "./formData";
+import { IPlantData } from "@/pages/plants/[pid]";
 
 export const getAllPlants = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/allPlants`;
@@ -11,6 +13,8 @@ export const getAllPlants = async () => {
     });
     return res.json();
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error, "ERRORRRR");
     // data = JSON.stringify(error);
   }
 };
@@ -107,82 +111,16 @@ export interface IAddPlant {
   pestsDiseases?: string;
   notes?: string;
 }
-export const addPlant = ({
-  title,
-  streetName,
-  flowers,
-  dateAcquired,
-  sunlight,
-  temp,
-  humidity,
-  soilMix,
-  daysBetweenWatering,
-  wateringConditions,
-  daysBetweenFertilizing,
-  fertilizerPlan,
-  plantingTime,
-  pruning,
-  harvestTime,
-  propogation,
-  pestsDiseases,
-  notes,
-}: IAddPlant) => {
+export const addPlant = (props: any) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants`;
   let objForUpdate: any = {};
+  objForUpdate.title = props.title;
 
-  objForUpdate.title = title;
-
-  if (streetName) {
-    objForUpdate.streetName = streetName;
-  }
-  if (flowers) {
-    objForUpdate.flowers = flowers;
-  }
-  if (dateAcquired) {
-    objForUpdate.dateAcquired = dateAcquired;
-  }
-  if (sunlight) {
-    objForUpdate.sunlight = sunlight;
-  }
-  if (temp) {
-    objForUpdate.temp = temp;
-  }
-  if (humidity) {
-    objForUpdate.humidity = humidity;
-  }
-  if (soilMix) {
-    objForUpdate.soilMix = soilMix;
-  }
-  if (daysBetweenWatering) {
-    objForUpdate.daysBetweenWatering = daysBetweenWatering;
-  }
-  if (wateringConditions) {
-    objForUpdate.wateringConditions = wateringConditions;
-  }
-  if (daysBetweenFertilizing) {
-    objForUpdate.daysBetweenFertilizing = daysBetweenFertilizing;
-  }
-  if (fertilizerPlan) {
-    objForUpdate.fertilizerPlan = fertilizerPlan;
-  }
-  if (plantingTime) {
-    objForUpdate.plantingTime = plantingTime;
-  }
-  if (pruning) {
-    objForUpdate.pruning = pruning;
-  }
-  if (harvestTime) {
-    objForUpdate.harvestTime = harvestTime;
-  }
-  if (propogation) {
-    objForUpdate.propogation = propogation;
-  }
-  if (pestsDiseases) {
-    objForUpdate.pestsDiseases = pestsDiseases;
-  }
-  if (notes) {
-    objForUpdate.notes = notes;
-  }
+  formData.fields.forEach((value) => {
+    if (value.name) {
+      objForUpdate[value.name] = props[value.name];
+    }
+  });
 
   return fetch(url, {
     method: "POST",
@@ -195,105 +133,16 @@ export const addPlant = ({
     });
 };
 
-export interface IUpdatePlantDetails {
-  id?: string;
-  title?: string;
-  streetName?: string;
-  flowers?: string;
-  dateAcquired?: string;
-  sunlight?: string;
-  temp?: string;
-  humidity?: string;
-  soilMix?: string;
-  wateringConditions?: string;
-  daysBetweenWatering?: number;
-  fertilizerPlan?: string;
-  daysBetweenFertilizing?: number;
-  plantingTime?: string;
-  pruning?: string;
-  harvestTime?: string;
-  propogation?: string;
-  pestsDiseases?: string;
-  notes?: string;
-}
-export const updatePlantDetails = ({
-  id,
-  title,
-  streetName,
-  flowers,
-  dateAcquired,
-  sunlight,
-  temp,
-  humidity,
-  soilMix,
-  daysBetweenWatering,
-  wateringConditions,
-  daysBetweenFertilizing,
-  fertilizerPlan,
-  plantingTime,
-  pruning,
-  harvestTime,
-  propogation,
-  pestsDiseases,
-  notes,
-}: IUpdatePlantDetails) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
-  console.log(daysBetweenFertilizing, "days between");
-  let objForUpdate: IUpdatePlantDetails = {};
-  if (title) {
-    objForUpdate.title = title;
-  }
-  if (streetName) {
-    objForUpdate.streetName = streetName;
-  }
-  if (flowers) {
-    objForUpdate.flowers = flowers;
-  }
-  if (dateAcquired) {
-    objForUpdate.dateAcquired = dateAcquired;
-  }
-  if (sunlight) {
-    objForUpdate.sunlight = sunlight;
-  }
-  if (temp) {
-    objForUpdate.temp = temp;
-  }
-  if (humidity) {
-    objForUpdate.humidity = humidity;
-  }
-  if (soilMix) {
-    objForUpdate.soilMix = soilMix;
-  }
-  if (daysBetweenWatering) {
-    objForUpdate.daysBetweenWatering = daysBetweenWatering;
-  }
-  if (wateringConditions) {
-    objForUpdate.wateringConditions = wateringConditions;
-  }
-  if (daysBetweenFertilizing) {
-    objForUpdate.daysBetweenFertilizing = daysBetweenFertilizing;
-  }
-  if (fertilizerPlan) {
-    objForUpdate.fertilizerPlan = fertilizerPlan;
-  }
-  if (plantingTime) {
-    objForUpdate.plantingTime = plantingTime;
-  }
-  if (pruning) {
-    objForUpdate.pruning = pruning;
-  }
-  if (harvestTime) {
-    objForUpdate.harvestTime = harvestTime;
-  }
-  if (propogation) {
-    objForUpdate.propogation = propogation;
-  }
-  if (pestsDiseases) {
-    objForUpdate.pestsDiseases = pestsDiseases;
-  }
-  if (notes) {
-    objForUpdate.notes = notes;
-  }
+export const updatePlantDetails = (props: any) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${props.id}`;
+
+  let objForUpdate: any = {};
+
+  formData.fields.forEach((value) => {
+    if (value.name) {
+      objForUpdate[value.name] = props[value.name];
+    }
+  });
 
   return fetch(url, {
     method: "PUT",

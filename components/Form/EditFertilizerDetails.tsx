@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { IUpdatePlantDetails, updatePlantDetails } from "@/services/plants";
+import { updatePlantDetails } from "@/services/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
 import Button, { Variants } from "../Button/Button";
 import css from "./Form.module.css";
@@ -26,13 +26,15 @@ const EditFertilizerDetails = ({
   return (
     <div>
       <Formik
+        // @ts-ignore
         initialValues={{
           fertilizerPlan: plantData?.fertilizerPlan || "",
           daysBetweenFertilizing:
             plantData?.daysBetweenFertilizing || undefined,
         }}
         validationSchema={validation}
-        onSubmit={async (values: IUpdatePlantDetails) => {
+        onSubmit={async (values: IPlantData) => {
+          // @ts-ignore
           values.id = plantData?._id;
           await updatePlantDetails(values);
           setFertilizerEdit(false);

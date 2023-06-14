@@ -26,6 +26,12 @@ export default function Gallery({
 }: IProps) {
   return (
     <div className={css.container}>
+      <div className={css.instructions}>
+        <p>
+          {`Click the white star to make the photo your plant's cover photo.`}
+        </p>
+      </div>
+
       <Row gutter={[16, 16]}>
         <Col span={8}>
           <Link href={`/camera?id=${plantId}&name=${plantName}`}>

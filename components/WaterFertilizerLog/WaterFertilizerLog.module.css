@@ -1,3 +1,10 @@
+.instructions {
+  margin-top: 1.5rem;
+}
+.instructions p {
+  font-size: var(--subtext-size);
+}
+
 .columnContainer {
   display: flex;
   flex-wrap: nowrap;
@@ -5,13 +12,17 @@
 
 .column {
   flex: 50%;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
 }
 
 .timestamp {
-  font-size: var(--p-size);
+  font-size: var(--p-size) -1;
   margin: 4px;
   font-weight: 300;
+}
+
+.iconContainer {
+  margin-bottom: 1rem;
 }
 
 .iconButton {

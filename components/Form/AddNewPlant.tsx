@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { Formik, Form, Field } from "formik";
 import { useRouter } from "next/navigation";
 import { IAddPlant, addPlant } from "@/services/plants";
 import Button from "../Button/Button";
+import { formData } from "@/services/formData";
 
 import css from "./Form.module.css";
 
@@ -17,156 +18,41 @@ const validation = Yup.object().shape({
 const FormAddNewPlant = () => {
   const { push } = useRouter();
 
+  const initialValues = {};
+
+  formData.fields.forEach((field) => {
+    //@ts-ignore
+    initialValues[field.name] = "";
+  });
+
   return (
     <Formik
-      initialValues={{
-        title: "",
-        streetName: "",
-        flowers: "",
-        dateAcquired: "",
-        sunlight: "",
-        temp: "",
-        humidity: "",
-        soilMix: "",
-        wateringConditions: "",
-        daysBetweenWatering: undefined,
-        fertilizerPlan: "",
-        daysBetweenFertilizing: undefined,
-        plantingTime: "",
-        pruning: "",
-        harvestTime: "",
-        propogation: "",
-        pestsDiseases: "",
-        notes: "",
-      }}
+      //@ts-ignore
+      initialValues={initialValues}
       validationSchema={validation}
       onSubmit={async (values: IAddPlant) => {
         await addPlant(values);
         push(`/plants?title=${values.title}`);
       }}
     >
-      {({ errors, touched, isSubmitting, isValid }) => (
+      {({ errors, touched, isValid }) => (
         <Form className={css.form}>
-          <Field
-            className={css.input}
-            type="title"
-            name="title"
-            placeholder="Plant name"
-          />
-          {errors.title && touched.title ? (
-            <div className={css.error}>{errors.title}</div>
-          ) : null}
-          <Field
-            className={css.input}
-            type="streetName"
-            name="streetName"
-            placeholder="Street name"
-          />
-          <Field
-            className={css.input}
-            type="flowers"
-            name="flowers"
-            placeholder="Flowers"
-          />
-          <Field
-            className={css.input}
-            type="dateAcquired"
-            name="dateAcquired"
-            placeholder="Date acquired"
-          />
-          <Field
-            className={css.input}
-            type="sunlight"
-            name="sunlight"
-            placeholder="Sunlight"
-          />
-          <Field
-            className={css.input}
-            type="temp"
-            name="temp"
-            placeholder="Temperature"
-          />
-          <Field
-            className={css.input}
-            type="humidity"
-            name="humidity"
-            placeholder="Humidity"
-          />
-
-          <Field
-            className={css.input}
-            type="soilMix"
-            name="soilMix"
-            placeholder="Soil mix"
-          />
-          <Field
-            className={css.input}
-            type="wateringConditions"
-            name="wateringConditions"
-            placeholder="Watering instructions"
-          />
-
-          <Field
-            className={css.input}
-            type="daysBetweenWatering"
-            name="daysBetweenWatering"
-            placeholder="Days between watering"
-          />
-          {errors.daysBetweenWatering && touched.daysBetweenWatering ? (
-            <div className={css.error}>{errors.daysBetweenWatering}</div>
-          ) : null}
-          <Field
-            className={css.input}
-            type="fertilizerPlan"
-            name="fertilizerPlan"
-            placeholder="Fertilizer plan"
-          />
-          <Field
-            className={css.input}
-            type="daysBetweenFertilizing"
-            name="daysBetweenFertilizing"
-            placeholder="Days between fertilizing"
-          />
-          {errors.daysBetweenFertilizing && touched.daysBetweenFertilizing ? (
-            <div className={css.error}>{errors.daysBetweenFertilizing}</div>
-          ) : null}
-          <Field
-            className={css.input}
-            type="plantingTime"
-            name="plantingTime"
-            placeholder="Planting time ie: Spring, Fall"
-          />
-          <Field
-            className={css.input}
-            type="pruning"
-            name="pruning"
-            placeholder="Pruning"
-          />
-          <Field
-            className={css.input}
-            type="harvestTime"
-            name="harvestTime"
-            placeholder="Harvest time"
-          />
-          <Field
-            className={css.input}
-            type="propogation"
-            name="propogation"
-            placeholder="Propogation"
-          />
-          <Field
-            className={css.input}
-            type="pestsDiseases"
-            name="pestsDiseases"
-            placeholder="Pests and diseases"
-          />
-          <Field
-            className={css.input}
-            type="notes"
-            name="notes"
-            placeholder="Notes"
-            as="textarea"
-          />
+          {formData.fields.map((field, i) => (
+            <>
+              <Field
+                key={i}
+                className={css.input}
+                type={field}
+                name={field.name}
+                placeholder={field.displayName}
+              />
+              {/* @ts-ignore */}
+              {field.validation && errors[field.name] && touched[field.name] ? (
+                // @ts-ignore
+                <div className={css.error}>{errors[field.name]}</div>
+              ) : null}
+            </>
+          ))}
           <div className={css.button}>
             <Button buttonText="Save" disabled={!isValid} submit />
           </div>

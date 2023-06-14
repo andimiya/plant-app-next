@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { IUpdatePlantDetails, updatePlantDetails } from "@/services/plants";
+import { Formik, Form, Field } from "formik";
+import { updatePlantDetails } from "@/services/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
 import Button, { Variants } from "../Button/Button";
 import css from "./Form.module.css";
@@ -22,12 +22,14 @@ const EditWaterDetails = ({ plantData, refreshData, setWaterEdit }: IProps) => {
   return (
     <div>
       <Formik
+        // @ts-ignore
         initialValues={{
           wateringConditions: plantData?.wateringConditions || "",
           daysBetweenWatering: plantData?.daysBetweenWatering || undefined,
         }}
         validationSchema={validation}
-        onSubmit={async (values: IUpdatePlantDetails) => {
+        onSubmit={async (values: IPlantData) => {
+          // @ts-ignore
           values.id = plantData?._id;
           await updatePlantDetails(values);
           setWaterEdit(false);

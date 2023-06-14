@@ -1,5 +1,12 @@
 .container {
-  padding: 1rem 0;
+  min-height: 100vh;
+}
+
+.instructions {
+  margin: 1.5rem 0;
+}
+.instructions p {
+  font-size: var(--subtext-size);
 }
 
 .image {
@@ -12,7 +19,6 @@
 }
 
 .imageContainer {
-  border: 1px solid green;
 }
 
 .icon {

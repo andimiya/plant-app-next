@@ -22,55 +22,72 @@ const WaterFertilizerLog = ({ plant, refreshData }: IProps) => {
     fertilizerSort = sortByTimestamp(plant?.fertilizing);
   }
 
-  const water = async (id: string) => {
-    await waterPlant(id);
-    refreshData();
+  const water = async (id: string | undefined) => {
+    if (id) {
+      await waterPlant(id);
+      refreshData();
+    }
   };
 
-  const fertilize = async (id: string) => {
-    await fertilizePlant(id);
-    refreshData();
+  const fertilize = async (id: string | undefined) => {
+    if (id) {
+      await fertilizePlant(id);
+      refreshData();
+    }
+  };
+
+  const EmptyState = () => {
+    return (
+      <div className={css.emptyState}>
+        Nothing logged yet, click the icon above!
+      </div>
+    );
   };
 
   return (
     <>
-      {!plant?.fertilizing?.length ? (
-        <div>Empty</div>
-      ) : (
-        <div className={css.columnContainer}>
-          <div className={css.column}>
-            <div onClick={() => water(plant._id)} className={css.iconButton}>
+      <div className={css.instructions}>
+        <p>
+          {`Click the water or fertilize icon when you care for your plant.`}
+        </p>
+        <p>
+          {`
+          When it's time for more water or fertilizer, you'll see a notification
+          on the home page.`}
+        </p>
+      </div>
+      <div className={css.columnContainer}>
+        <div className={css.column}>
+          <div onClick={() => water(plant?._id)} className={css.iconButton}>
+            <div className={css.iconContainer}>
               <Icon iconName={faDroplet} color="var(--teal)" size="2x" />
-              {waterSort?.map((timestamp) => {
-                return (
-                  <div key={timestamp}>
-                    <p className={css.timestamp}>
-                      {formatDate(timestamp, true)}
-                    </p>
-                  </div>
-                );
-              })}
             </div>
-          </div>
-          <div className={css.column}>
-            <div
-              onClick={() => fertilize(plant._id)}
-              className={css.iconButton}
-            >
-              <Icon iconName={faSeedling} size="2x" color="var(--rust)" />
-              {fertilizerSort?.map((timestamp) => {
-                return (
-                  <div key={timestamp}>
-                    <p className={css.timestamp}>
-                      {formatDate(timestamp, true)}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+            {!plant?.watering?.length && <EmptyState />}
+            {waterSort?.map((timestamp) => {
+              return (
+                <div key={timestamp}>
+                  <p className={css.timestamp}>{formatDate(timestamp, true)}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
-      )}
+        <div className={css.column}>
+          <div onClick={() => fertilize(plant?._id)} className={css.iconButton}>
+            <div className={css.iconContainer}>
+              <Icon iconName={faSeedling} size="2x" color="var(--rust)" />
+            </div>
+            {!plant?.fertilizing?.length && <EmptyState />}
+            {fertilizerSort?.map((timestamp) => {
+              return (
+                <div key={timestamp}>
+                  <p className={css.timestamp}>{formatDate(timestamp, true)}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </>
   );
 };

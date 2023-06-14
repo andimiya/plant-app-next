@@ -1,6 +1,7 @@
 import clientPromise from "../../db/mongodb";
 import { PLANT_TABLE } from "../../constants/constants";
 import { ObjectId } from "mongodb";
+import { formData } from "../../services/formData";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -19,57 +20,11 @@ export default async function handler(req, res) {
 
       objtoAdd.title = req.body.title;
 
-      if (req.body.streetName) {
-        objtoAdd.streetName = req.body.streetName;
-      }
-      if (req.body.flowers) {
-        objtoAdd.flowers = req.body.flowers;
-      }
-      if (req.body.dateAcquired) {
-        objtoAdd.dateAcquired = req.body.dateAcquired;
-      }
-      if (req.body.sunlight) {
-        objtoAdd.sunlight = req.body.sunlight;
-      }
-      if (req.body.temp) {
-        objtoAdd.temp = req.body.temp;
-      }
-      if (req.body.humidity) {
-        objtoAdd.humidity = req.body.humidity;
-      }
-      if (req.body.soilMix) {
-        objtoAdd.soilMix = req.body.soilMix;
-      }
-      if (req.body.daysBetweenWatering) {
-        objtoAdd.daysBetweenWatering = req.body.daysBetweenWatering;
-      }
-      if (req.body.wateringConditions) {
-        objtoAdd.wateringConditions = req.body.wateringConditions;
-      }
-      if (req.body.daysBetweenFertilizing) {
-        objtoAdd.daysBetweenFertilizing = req.body.daysBetweenFertilizing;
-      }
-      if (req.body.fertilizerPlan) {
-        objtoAdd.fertilizerPlan = req.body.fertilizerPlan;
-      }
-      if (req.body.plantingTime) {
-        objtoAdd.plantingTime = req.body.plantingTime;
-      }
-      if (req.body.pruning) {
-        objtoAdd.pruning = req.body.pruning;
-      }
-      if (req.body.harvestTime) {
-        objtoAdd.harvestTime = req.body.harvestTime;
-      }
-      if (req.body.propogation) {
-        objtoAdd.propogation = req.body.propogation;
-      }
-      if (req.body.pestsDiseases) {
-        objtoAdd.pestsDiseases = req.body.pestsDiseases;
-      }
-      if (req.body.notes) {
-        objtoAdd.notes = req.body.notes;
-      }
+      formData.stringFields.forEach((field) => {
+        if (req.body[field]) {
+          objtoAdd[field] = req.body[field];
+        }
+      });
 
       const post = await db.collection(PLANT_TABLE).insertOne(objtoAdd);
       if (!post) {
@@ -107,65 +62,18 @@ export default async function handler(req, res) {
     case "PUT":
       let objForUpdateArrays = {};
       let objForUpdateStrings = {};
-      if (req.body.imageUrl) {
-        objForUpdateArrays.images = req.body.imageUrl;
-      }
-      if (req.body.watering) {
-        objForUpdateArrays.watering = req.body.watering;
-      }
-      if (req.body.fertilizing) {
-        objForUpdateArrays.fertilizing = req.body.fertilizing;
-      }
 
-      if (req.body.title) {
-        objForUpdateStrings.title = req.body.title;
-      }
-      if (req.body.streetName) {
-        objForUpdateStrings.streetName = req.body.streetName;
-      }
-      if (req.body.flowers) {
-        objForUpdateStrings.flowers = req.body.flowers;
-      }
-      if (req.body.dateAcquired) {
-        objForUpdateStrings.dateAcquired = req.body.dateAcquired;
-      }
-      if (req.body.sunlight) {
-        objForUpdateStrings.sunlight = req.body.sunlight;
-      }
-      if (req.body.temp) {
-        objForUpdateStrings.temp = req.body.temp;
-      }
-      if (req.body.humidity) {
-        objForUpdateStrings.humidity = req.body.humidity;
-      }
-      if (req.body.soilMix) {
-        objForUpdateStrings.soilMix = req.body.soilMix;
-      }
+      formData.fields.forEach((field) => {
+        if (req.body[field.name]) {
+          objForUpdateStrings[field.name] = req.body[field.name];
+        }
+      });
 
-      if (req.body.wateringConditions) {
-        objForUpdateStrings.wateringConditions = req.body.wateringConditions;
-      }
-      if (req.body.fertilizerPlan) {
-        objForUpdateStrings.fertilizerPlan = req.body.fertilizerPlan;
-      }
-      if (req.body.plantingTime) {
-        objForUpdateStrings.plantingTime = req.body.plantingTime;
-      }
-      if (req.body.pruning) {
-        objForUpdateStrings.pruning = req.body.pruning;
-      }
-      if (req.body.harvestTime) {
-        objForUpdateStrings.harvestTime = req.body.harvestTime;
-      }
-      if (req.body.propogation) {
-        objForUpdateStrings.propogation = req.body.propogation;
-      }
-      if (req.body.pestsDiseases) {
-        objForUpdateStrings.pestsDiseases = req.body.pestsDiseases;
-      }
-      if (req.body.notes) {
-        objForUpdateStrings.notes = req.body.notes;
-      }
+      formData.arrayFields.forEach((field) => {
+        if (req.body[field]) {
+          objForUpdateArrays[field] = req.body[field];
+        }
+      });
 
       if (req.body.daysBetweenWatering === -1) {
         await db.collection(PLANT_TABLE).updateOne(
