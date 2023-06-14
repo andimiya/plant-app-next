@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     case "GET":
       const getAll = await db.collection(PLANT_TABLE).find().toArray();
       if (!getAll) {
-        res.status(500);
+        res.status("500").send("Server Error - Unable to get plants");
       } else {
         res.json(getAll);
       }

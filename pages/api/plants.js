@@ -20,15 +20,15 @@ export default async function handler(req, res) {
 
       objtoAdd.title = req.body.title;
 
-      formData.stringFields.forEach((field) => {
-        if (req.body[field]) {
-          objtoAdd[field] = req.body[field];
+      formData.fields.forEach((field) => {
+        if (req.body[field.name]) {
+          objtoAdd[field.name] = req.body[field.name];
         }
       });
 
       const post = await db.collection(PLANT_TABLE).insertOne(objtoAdd);
       if (!post) {
-        res.status(500).send("Server Error");
+        res.status(500).send("Server Error - Unable to add plant");
       } else {
         res.status(200).json(post);
       }
@@ -54,7 +54,7 @@ export default async function handler(req, res) {
         }
       );
       if (!deleteImage) {
-        res.status(500).send("Server Error");
+        res.status(500).send("Server Error - Unable to delete image");
       } else {
         res.json(deleteImage);
       }
