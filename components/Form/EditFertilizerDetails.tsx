@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { updatePlantDetails } from "@/services/plants";
+import { updatePlantDetails } from "@/lib/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
 import Button, { Variants } from "../Button/Button";
 import css from "./Form.module.css";

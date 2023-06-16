@@ -1,9 +1,8 @@
 import moment from "moment";
-import { formData } from "./formData";
-import { IPlantData } from "@/pages/plants/[pid]";
+import { formData } from "../services/formData";
 
 export const getAllPlants = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/allPlants`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants`;
   try {
     const res = await fetch(url, {
       headers: {
@@ -21,7 +20,7 @@ export const getAllPlants = async () => {
 
 export const getPlant = async (title: string) => {
   let data = [];
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?title=${title}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants/${title}`;
   try {
     const res = await fetch(url, {
       headers: {
@@ -38,7 +37,7 @@ export const getPlant = async (title: string) => {
 };
 
 export const waterPlant = (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants/plant/${id}`;
   return fetch(url, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -53,7 +52,7 @@ export const waterPlant = (id: string) => {
 };
 
 export const fertilizePlant = (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants/plant/${id}`;
   return fetch(url, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -68,10 +67,13 @@ export const fertilizePlant = (id: string) => {
 };
 
 export const setPrimaryImage = (id: string, imageUrl: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/images?id=${id}&imageUrl=${imageUrl}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants/plant/${id}/image`;
   return fetch(url, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      imageUrl,
+    }),
   })
     .then((res) => res.json())
     .then((data) => {
@@ -112,7 +114,7 @@ export interface IAddPlant {
   notes?: string;
 }
 export const addPlant = (props: any) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants`;
   let objForUpdate: any = {};
   objForUpdate.title = props.title;
 
@@ -134,7 +136,7 @@ export const addPlant = (props: any) => {
 };
 
 export const updatePlantDetails = (props: any) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${props.id}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants/plant/${props.id}`;
 
   let objForUpdate: any = {};
 

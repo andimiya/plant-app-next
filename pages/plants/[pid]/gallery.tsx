@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { getAllPlants, getPlant } from "@/services/plants";
+import { getAllPlants, getPlant } from "@/lib/plants";
 import { IPlantData } from "../[pid]";
 import Tabs from "@/components/Tabs/Tabs";
 import Gallery from "@/components/Gallery/Gallery";
@@ -42,33 +42,51 @@ interface IParam {
     pid: string;
   };
 }
-export async function getStaticProps({ params }: IParam) {
-  const plantData = await getPlant(params.pid);
-  // redirect to main blog posts page if post doesn't exist, or any other page you want
-  if (!plantData) return { redirect: "/", permanent: false };
+
+export async function getServerSideProps({ params }: IParam) {
+  const plant = await getPlant(params.pid);
+  if (!plant) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       plant: {
-        ...plantData,
+        ...plant,
       },
     },
   };
 }
 
-export async function getStaticPaths() {
-  const plants = await getAllPlants();
+// export async function getStaticProps({ params }: IParam) {
+//   const plantData = await getPlant(params.pid);
+//   // redirect to main blog posts page if post doesn't exist, or any other page you want
+//   if (!plantData) return { redirect: "/", permanent: false };
 
-  return {
-    paths: plants?.map((plant: IPlantData) => {
-      return {
-        params: {
-          pid: plant.title,
-        },
-      };
-    }),
-    fallback: true,
-  };
-}
+//   return {
+//     props: {
+//       plant: {
+//         ...plantData,
+//       },
+//     },
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const plants = await getAllPlants();
+
+//   return {
+//     paths: plants?.map((plant: IPlantData) => {
+//       return {
+//         params: {
+//           pid: plant.title,
+//         },
+//       };
+//     }),
+//     fallback: true,
+//   };
+// }
 
 export default GalleryPage;

@@ -3,7 +3,7 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useRouter } from "next/navigation";
-import { IAddPlant, addPlant } from "@/services/plants";
+import { IAddPlant, addPlant } from "@/lib/plants";
 import Button from "../Button/Button";
 import { formData } from "@/services/formData";
 

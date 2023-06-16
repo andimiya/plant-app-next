@@ -2,7 +2,7 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { useRouter } from "next/navigation";
-import { updatePlantDetails } from "@/services/plants";
+import { updatePlantDetails } from "@/lib/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
 import Button from "../Button/Button";
 import css from "./Form.module.css";

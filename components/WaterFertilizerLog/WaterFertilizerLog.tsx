@@ -1,5 +1,5 @@
 import { formatDate, sortByTimestamp } from "@/utils/utils";
-import { fertilizePlant, waterPlant } from "@/services/plants";
+import { fertilizePlant, waterPlant } from "@/lib/plants";
 import { IPlantData } from "@/pages/plants/[pid]";
 
 import css from "./WaterFertilizerLog.module.css";

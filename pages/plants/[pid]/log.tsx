@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { getAllPlants, getPlant } from "@/services/plants";
+import { getAllPlants, getPlant } from "@/lib/plants";
 import { IPlantData } from "../[pid]";
 import Tabs from "@/components/Tabs/Tabs";
 import WaterFertilizerLog from "@/components/WaterFertilizerLog/WaterFertilizerLog";

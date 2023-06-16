@@ -5,7 +5,7 @@ import {
   getAllPlants,
   getPlant,
   waterPlant,
-} from "@/services/plants";
+} from "@/lib/plants";
 import Tabs from "@/components/Tabs/Tabs";
 import PlantDetails from "@/components/PlantDetails/PlantDetails";
 import Image from "next/image";
@@ -78,33 +78,36 @@ interface IParam {
     pid: string;
   };
 }
-export async function getStaticProps({ params }: IParam) {
-  const plantData = await getPlant(params.pid);
-  // redirect to main blog posts page if post doesn't exist, or any other page you want
-  if (!plantData) return { redirect: "/", permanent: false };
+export async function getServerSideProps({ params }: IParam) {
+  const plant = await getPlant(params.pid);
+  if (!plant) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       plant: {
-        ...plantData,
+        ...plant,
       },
     },
   };
 }
 
-export async function getStaticPaths() {
-  const plants = await getAllPlants();
+// export async function getStaticPaths() {
+//   const plants = await getAllPlants();
 
-  return {
-    paths: plants?.map((plant: IPlantData) => {
-      return {
-        params: {
-          pid: plant.title,
-        },
-      };
-    }),
-    fallback: true,
-  };
-}
+//   return {
+//     paths: plants?.map((plant: IPlantData) => {
+//       return {
+//         params: {
+//           pid: plant.title,
+//         },
+//       };
+//     }),
+//     fallback: true,
+//   };
+// }
 
 export default Plant;

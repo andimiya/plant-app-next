@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
-import imageUpload from "./api/addImageToS3";
+import imageUpload from "../lib/addImageToS3";
 import DropdownComponent from "@/components/Dropdown/Dropdown";
 import ImagePreview from "@/components/ImagePreview/ImagePreview";
 import Button, { Variants } from "@/components/Button/Button";
@@ -16,9 +16,10 @@ export default function CameraPage() {
 
   const handleClick = async (plantId: string) => {
     const id = router.query.id ? router.query.id : plantId;
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/plants/plant/${id}/image`;
+
     await fetch(url, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         imageUrl,

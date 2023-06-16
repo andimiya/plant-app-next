@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { deleteImage, setPrimaryImage } from "@/services/plants";
+import { deleteImage, setPrimaryImage } from "@/lib/plants";
 import { Col, Row } from "antd";
 import Icon from "../Icons/Icon";
 import {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IPlantData } from "./plants/[pid]";
-import { fertilizePlant, getAllPlants, waterPlant } from "../services/plants";
+import { fertilizePlant, getAllPlants, waterPlant } from "../lib/plants";
 import PlantCard from "@/components/PlantCard/PlantCard";
 
 export interface IProps {

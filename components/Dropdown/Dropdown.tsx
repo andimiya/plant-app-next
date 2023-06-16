@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IPlantData } from "@/pages/plants/[pid]";
-import { getAllPlants } from "@/services/plants";
+import { getAllPlants } from "@/lib/plants";
 import { toast } from "react-toastify";
 
 import css from "./Dropdown.module.css";
