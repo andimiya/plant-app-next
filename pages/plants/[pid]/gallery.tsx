@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getAllPlants, getPlant } from "@/lib/plants";
 import { IPlantData } from "../[pid]";

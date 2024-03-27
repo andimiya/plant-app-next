@@ -35,7 +35,7 @@ const EditFertilizerDetails = ({
         validationSchema={validation}
         onSubmit={async (values: IPlantData) => {
           // @ts-ignore
-          values.id = plantData?._id;
+          // values.id = plantData?._id;
           await updatePlantDetails(values);
           setFertilizerEdit(false);
           refreshData();

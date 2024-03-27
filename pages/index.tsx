@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
-import { IPlantData } from "./plants/[pid]";
-import { fertilizePlant, getAllPlants, waterPlant } from "../lib/plants";
-import PlantCard from "@/components/PlantCard/PlantCard";
+import { useEffect, useState } from 'react';
+import { IPlantData } from './plants/[pid]';
+import { fertilizePlant, getAllPlants, waterPlant } from '../lib/plants';
+import PlantCard from '@/components/PlantCard/PlantCard';
+import { NavMenu } from '@/components/NavMenu/NavMenu';
+import ReminderList from '@/components/ReminderList/ReminderList';
+import css from './index.module.css';
 
 export interface IProps {
   allPlants: IPlantData[];
@@ -9,6 +12,7 @@ export interface IProps {
 
 const Home = () => {
   const [allPlantsData, setAllPlantsData] = useState<IPlantData[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function fetchAllPlants() {
     const data = await getAllPlants();
@@ -16,7 +20,9 @@ const Home = () => {
   }
 
   useEffect(() => {
+    setLoading(true);
     fetchAllPlants();
+    setLoading(false);
   }, []);
 
   const water = async (id: string) => {
@@ -30,7 +36,20 @@ const Home = () => {
   };
 
   return (
-    <div>
+    // <body>
+    <div className="hero">
+      <NavMenu />
+      <div className="heading-wrapper w-container">
+        <h1 className="main-heading">Care for your plants</h1>
+        <a href="contact.html" className="button w-button">
+          + Add a Plant
+        </a>
+      </div>
+      <div className={css.reminderContainer}>
+        <ReminderList />
+      </div>
+
+      {/* {loading && <div>Loading...</div>}
       <h1 style={{ fontSize: "1.5rem", fontWeight: "300" }}>All Plants</h1>
       <div className="ui centered cards">
         {allPlantsData?.length &&
@@ -44,8 +63,9 @@ const Home = () => {
               />
             );
           })}
-      </div>
+      </div> */}
     </div>
+    // </body>
   );
 };
 

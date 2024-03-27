@@ -2,7 +2,7 @@ import Head from "next/head";
 
 export default function Nav() {
   return (
-    <nav>
+    <>
       <Head>
         <title>Plant Journal</title>
         <meta charSet="utf-8" />
@@ -86,6 +86,6 @@ export default function Nav() {
         {/*  Manifest.json  */}
         <link rel="manifest" href="../../manifest.json" />
       </Head>
-    </nav>
+    </>
   );
 }

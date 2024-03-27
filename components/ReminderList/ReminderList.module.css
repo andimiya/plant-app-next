@@ -1,0 +1,84 @@
+.cardContainer {
+  background-color: var(--off-white);
+  border-radius: 10px;
+  color: var(--black);
+  padding: 1rem 1.5rem 0.8rem 1.5rem;
+}
+
+.toggleContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rowsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottomRowContainer {
+  display: flex;
+  column-gap: 24px;
+  align-items: center;
+}
+
+.topRowContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.imageTitleContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.buttonContainer {
+  align-self: end;
+}
+
+.circleButton {
+  height: 30px;
+  width: 30px;
+  background-color: var(--true-white);
+  border-radius: 50%;
+  border: 3px solid gray;
+  display: inline-block;
+}
+
+.h2 {
+  font-weight: 300;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.h3 {
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.subtext {
+  font-family: var(--font-lato);
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--black);
+}
+
+.overdueText {
+  font-family: var(--font-lato);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--error);
+}
+
+.careText {
+  font-family: var(--font-lato);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--black);
+}
