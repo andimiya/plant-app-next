@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import {
   fertilizePlant,
   getAllPlants,
   getPlant,
   waterPlant,
-} from "@/lib/plants";
-import Tabs from "@/components/Tabs/Tabs";
-import PlantDetails from "@/components/PlantDetails/PlantDetails";
-import Image from "next/image";
-import PIDHeader from "@/components/PIDHeader/PIDHeader";
+} from '@/lib/plants';
+import Tabs from '@/components/Tabs/Tabs';
+import PlantDetails from '@/components/PlantDetails/PlantDetails';
+import Image from 'next/image';
+import PIDHeader from '@/components/PIDHeader/PIDHeader';
+import { NavMenu } from '@/components/NavMenu/NavMenu';
+import css from './pid.module.css';
 
 export interface IPlantData {
   _id: string;
@@ -61,14 +63,22 @@ const Plant = ({ plant }: IProps) => {
 
   if (router.isFallback) return null;
   return (
-    <div>
-      <PIDHeader title={plant?.title} image={plant?.images[0]} />
-      <PlantDetails
-        plantData={plant}
-        water={water}
-        fertilize={fertilize}
-        refreshData={refreshData}
-      />
+    <div className="hero">
+      <NavMenu />
+      <div className="heading-wrapper w-container">
+        <h1 className="main-heading">{plant.title}</h1>
+        <a href="contact.html" className="button w-button">
+          + Add a Photo
+        </a>
+      </div>
+      <div className={css.plantContainer}>
+        <PlantDetails
+          plantData={plant}
+          water={water}
+          fertilize={fertilize}
+          refreshData={refreshData}
+        />
+      </div>
     </div>
   );
 };

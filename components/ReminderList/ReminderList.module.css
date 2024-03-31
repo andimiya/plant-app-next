@@ -24,6 +24,22 @@
   align-items: center;
 }
 
+.careDetailsContainer {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0);
+  transition: all 0.3s ease-out;
+  /* to prevent the space caused by the hidden care details text element */
+  height: 8px;
+}
+
+.careDetailsContainer.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(50%);
+  margin: 1rem 0;
+}
+
 .topRowContainer {
   display: flex;
   justify-content: space-between;
@@ -39,6 +55,7 @@
 
 .buttonContainer {
   align-self: end;
+  cursor: pointer;
 }
 
 .circleButton {
@@ -76,9 +93,19 @@
   color: var(--error);
 }
 
+.careButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .careText {
   font-family: var(--font-lato);
   font-weight: 500;
   font-size: 0.8rem;
   color: var(--black);
+}
+
+.icon {
+  padding: 4px 0px 0px 4px;
 }

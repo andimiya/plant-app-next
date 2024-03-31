@@ -13,13 +13,13 @@
   --light-teal: #72a6b0;
   --light-rust: #c5926a;
   --error: #920303;
-  --p-size: 1.1rem;
+  --p-size: 1rem;
   --subtext-size: 0.8rem;
   --h2-size: 1.5rem;
   --font-lato: 'Lato', sans-serif;
 }
 
-html {
+body {
   font-family: var(--font-lato);
   color: var(--white);
 }
