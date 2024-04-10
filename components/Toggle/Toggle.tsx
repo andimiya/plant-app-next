@@ -8,7 +8,7 @@ const Toggle = () => {
       </div>
       <div>
         <input type="checkbox" id="switch" />
-        <label for="switch" />
+        <label htmlFor="switch" />
       </div>
     </div>
   );
