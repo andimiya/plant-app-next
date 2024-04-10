@@ -21,7 +21,7 @@ const nextConfig = {
 };
 
 const withPWA = require('next-pwa')({
-  // disable: process.env.NODE_ENV === "development",
+  disable: process.env.NEXT_DISABLE_PWA,
   dest: 'public',
   skipWaiting: true,
   register: true,

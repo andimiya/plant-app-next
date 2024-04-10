@@ -46,7 +46,7 @@ const Home = () => {
         </a>
       </div>
       <div className={css.reminderContainer}>
-        <ReminderList />
+        <ReminderList allPlants={allPlantsData} />
       </div>
 
       {/* {loading && <div>Loading...</div>}

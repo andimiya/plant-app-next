@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+}
+
+.siteTitle {
+  font-size: 1.3em;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  color: var(--white);
+}
+
+.nav a {
+  color: var(--white);
+  font-size: 0.8em;
+  font-weight: 500;
+  margin-left: 2rem;
+}
+
+.nav a:hover {
+  color: var(--sand);
+}
