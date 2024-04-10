@@ -18,7 +18,7 @@ const ReminderList = () => {
   };
 
   const handleTaskCheck = () => {
-    console.log('Task checked');
+    // console.log('Task checked');
   };
 
   return (

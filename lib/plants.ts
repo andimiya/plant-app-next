@@ -1,19 +1,19 @@
-import moment from "moment";
-import { formData } from "../services/formData";
+import moment from 'moment';
+import { formData } from '../services/formData';
 
 export const getAllPlants = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants`;
   try {
     const res = await fetch(url, {
       headers: {
-        Accept: "application/json",
-        "User-Agent": "*",
+        Accept: 'application/json',
+        'User-Agent': '*',
       },
     });
     return res.json();
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log(error, "ERRORRRR");
+    // console.log(error, "ERRORRRR");
     // data = JSON.stringify(error);
   }
 };
@@ -24,8 +24,8 @@ export const getPlant = async (title: string) => {
   try {
     const res = await fetch(url, {
       headers: {
-        Accept: "application/json",
-        "User-Agent": "*",
+        Accept: 'application/json',
+        'User-Agent': '*',
       },
     });
 
@@ -39,8 +39,8 @@ export const getPlant = async (title: string) => {
 export const waterPlant = (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/plant/${id}`;
   return fetch(url, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       watering: moment(),
     }),
@@ -54,8 +54,8 @@ export const waterPlant = (id: string) => {
 export const fertilizePlant = (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/plant/${id}`;
   return fetch(url, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       fertilizing: moment(),
     }),
@@ -69,8 +69,8 @@ export const fertilizePlant = (id: string) => {
 export const setPrimaryImage = (id: string, imageUrl: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/plant/${id}/image`;
   return fetch(url, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       imageUrl,
     }),
@@ -84,8 +84,8 @@ export const setPrimaryImage = (id: string, imageUrl: string) => {
 export const deleteImage = (id: string, imageUrl: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants?id=${id}&imageUrl=${imageUrl}`;
   return fetch(url, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
   })
     .then((res) => res.json())
     .then((data) => {
@@ -125,8 +125,8 @@ export const addPlant = (props: any) => {
   });
 
   return fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(objForUpdate),
   })
     .then((res) => res.json())
@@ -136,7 +136,7 @@ export const addPlant = (props: any) => {
 };
 
 export const updatePlantDetails = (props: any) => {
-  console.log(props, "props");
+  // console.log(props, 'props');
   const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/plant/${props.id}`;
 
   let objForUpdate: any = {};
@@ -148,8 +148,8 @@ export const updatePlantDetails = (props: any) => {
   });
 
   return fetch(url, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(objForUpdate),
   })
     .then((res) => res.json())
