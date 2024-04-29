@@ -1,0 +1,34 @@
+.image {
+  object-fit: cover;
+}
+
+.plantName {
+  font-family: var(--font-lato) sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: var(--white);
+}
+
+.ctaContainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 1rem;
+}
+
+.meta {
+  color: var(--white);
+  font-size: 0.8rem;
+  padding-bottom: 0.5rem;
+}
+
+.card {
+  margin-bottom: 2rem;
+}
+
+.cardTitleContainer {
+  padding: 0.2rem 0.8rem;
+}
+
+.iconButton {
+  cursor: pointer;
+}
