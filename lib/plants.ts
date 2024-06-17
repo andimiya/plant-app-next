@@ -13,7 +13,7 @@ export const getAllPlants = async () => {
     return res.json();
   } catch (error) {
     // eslint-disable-next-line no-console
-    // console.log(error, "ERRORRRR");
+    console.log(error, 'ERRORRRR');
     // data = JSON.stringify(error);
   }
 };

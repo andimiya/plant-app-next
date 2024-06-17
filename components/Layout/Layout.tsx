@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-
-import { ToastContainer, Slide } from 'react-toastify';
+import { NavMenu } from '../NavMenu/NavMenu';
 
 interface Props {
   children?: ReactNode;
@@ -11,29 +9,12 @@ interface Props {
 const Layout = ({ children }: Props) => (
   <main>
     <Header />
-    <div>{children}</div>
-    {/* <Footer /> */}
+    <div className="hero">
+      <NavMenu />
+    </div>
+    <div style={{ width: '70%', margin: '0 auto' }}>{children}</div>
+    <div style={{ marginBottom: '50px' }}></div>
   </main>
-  // <div>
-  //   <ToastContainer
-  //     position="top-right"
-  //     autoClose={2000}
-  //     hideProgressBar
-  //     newestOnTop={false}
-  //     closeOnClick
-  //     rtl={false}
-  //     pauseOnFocusLoss
-  //     draggable
-  //     pauseOnHover
-  //     theme="dark"
-  //     transition={Slide}
-  //   />
-
-  //   <Header />
-
-  //   <div>{children}</div>
-  //   <Footer />
-  // </div>
 );
 
 export default Layout;

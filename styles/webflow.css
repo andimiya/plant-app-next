@@ -89,8 +89,6 @@ img {
 }
 
 .hero {
-  min-height: 340px;
-  height: 500px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.57), #222),
     url('../public/monstera.jpg');
   background-position: 0 0, 38%;

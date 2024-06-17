@@ -2,13 +2,17 @@ import { useState } from 'react';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Icon from '../Icons/Icon';
 import { IPlantData } from '@/pages/plants/[pid]';
-import css from './PlantCard.module.css';
+import css from './PlantTaskCard.module.css';
 
 export interface IProps {
   plant: IPlantData;
 }
 
-export const PlantCard = ({ plant }: IProps) => {
+export const PlantTaskCard = ({ plant }: IProps) => {
+  const handleTaskCheck = () => {
+    console.log('Task checked');
+  };
+
   const [isExpanded, setIsExpanded] = useState(false);
   const [careDetails, setCareDetails] = useState('none');
 
@@ -37,6 +41,9 @@ export const PlantCard = ({ plant }: IProps) => {
               <h3 className={css.h3}>{plant.title}</h3>
               <div className={css.subtext}>Last watered Tue, Mar 25</div>
             </div>
+          </div>
+          <div className={css.buttonContainer}>
+            <button onClick={handleTaskCheck} className={css.circleButton} />
           </div>
         </div>
         {plant?.careInstructions && (

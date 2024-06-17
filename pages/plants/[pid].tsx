@@ -36,6 +36,7 @@ export interface IPlantData {
   propogation?: string;
   pestsDiseases?: string;
   notes?: string;
+  careInstructions?: string;
 }
 
 export interface IProps {
