@@ -2,16 +2,25 @@ import Toggle from '../Toggle/Toggle';
 import { IPlantData } from '@/pages/plants/[pid]';
 import { PlantTaskCard } from '../PlantTaskCard/PlantTaskCard';
 
-import css from './ReminderList.module.css';
-import { Loader } from 'semantic-ui-react';
+import { waterFertilizePlant } from '@/lib/plants';
+import { useState } from 'react';
 
+import css from './ReminderList.module.css';
+
+interface Props {
+  allPlants: IPlantData[];
+  loading: boolean;
+  handleToggle: (event: { target: { checked: boolean } }) => void;
+  isFertilizerToggledOn: boolean;
+  handleTaskCheck: (plantId: string) => void;
+}
 const ReminderList = ({
   allPlants,
   loading,
-}: {
-  allPlants: IPlantData[];
-  loading: boolean;
-}) => {
+  handleToggle,
+  isFertilizerToggledOn,
+  handleTaskCheck,
+}: Props) => {
   return (
     <div className={css.container}>
       <div>
@@ -23,10 +32,17 @@ const ReminderList = ({
       ) : (
         <>
           <div className={css.toggleContainer}>
-            <Toggle />
+            <Toggle
+              handleToggle={handleToggle}
+              isToggledOn={isFertilizerToggledOn}
+            />
           </div>
           {allPlants.map((plant: IPlantData) => (
-            <PlantTaskCard key={plant._id} plant={plant} />
+            <PlantTaskCard
+              key={plant._id}
+              plant={plant}
+              handleTaskCheck={handleTaskCheck}
+            />
           ))}
         </>
       )}

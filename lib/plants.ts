@@ -36,13 +36,13 @@ export const getPlant = async (title: string) => {
   return data;
 };
 
-export const waterPlant = (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/plant/${id}`;
+export const waterFertilizePlant = (id: string, waterAndFertilize = false) => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/plant/${id}/water-fertilize`;
   return fetch(url, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      watering: moment(),
+      waterAndFertilize,
     }),
   })
     .then((res) => res.json())
@@ -51,19 +51,22 @@ export const waterPlant = (id: string) => {
     });
 };
 
-export const fertilizePlant = (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/plant/${id}`;
-  return fetch(url, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      fertilizing: moment(),
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
+export const getAttentionPlants = async () => {
+  let data = [];
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/plants/attention`;
+  try {
+    const res = await fetch(url, {
+      headers: {
+        Accept: 'application/json',
+        'User-Agent': '*',
+      },
     });
+
+    data = await res.json();
+  } catch (error) {
+    // throw new Error(`Error fetching plant: ${title}: ${error}`);
+  }
+  return data;
 };
 
 export const setPrimaryImage = (id: string, imageUrl: string) => {

@@ -1,0 +1,7 @@
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.57), #222),
+    url('../public/monstera.jpg');
+  background-position: 0 0, 38%;
+  background-repeat: repeat, no-repeat;
+  background-size: auto, cover;
+}

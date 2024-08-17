@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { IPlantData } from './plants/[pid]';
-import { fertilizePlant, getAllPlants, waterPlant } from '../lib/plants';
+import {
+  fertilizePlant,
+  getAllPlants,
+  waterFertilizePlant,
+  waterPlant,
+} from '../lib/plants';
 import ReminderList from '@/components/ReminderList/ReminderList';
 import Hero from '@/components/Hero/Hero';
 
@@ -17,26 +22,33 @@ const Home = () => {
     setAllPlantsData(data);
   }
 
+  const [isFertilizerToggledOn, setIsFertilizerToggledOn] = useState(true);
+
+  const handleToggle = (event: { target: { checked: boolean } }) => {
+    setIsFertilizerToggledOn(event.target.checked);
+  };
+
+  const handleTaskCheck = async (plantId: string) => {
+    await waterFertilizePlant(plantId, isFertilizerToggledOn);
+    fetchAllPlants();
+  };
+
   useEffect(() => {
     setLoading(true);
     fetchAllPlants();
     setLoading(false);
   }, []);
 
-  const water = async (id: string) => {
-    await waterPlant(id);
-    fetchAllPlants();
-  };
-
-  const fertilize = async (id: string) => {
-    await fertilizePlant(id);
-    fetchAllPlants();
-  };
-
   return (
     <div>
       <Hero headerText="Care for your plants" />
-      <ReminderList allPlants={allPlantsData} loading={loading} />
+      <ReminderList
+        allPlants={allPlantsData}
+        loading={loading}
+        handleToggle={handleToggle}
+        isFertilizerToggledOn={isFertilizerToggledOn}
+        handleTaskCheck={handleTaskCheck}
+      />
     </div>
   );
 };

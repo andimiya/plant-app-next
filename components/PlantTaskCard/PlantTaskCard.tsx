@@ -6,13 +6,10 @@ import css from './PlantTaskCard.module.css';
 
 export interface IProps {
   plant: IPlantData;
+  handleTaskCheck: (plantId: string) => any;
 }
 
-export const PlantTaskCard = ({ plant }: IProps) => {
-  const handleTaskCheck = () => {
-    console.log('Task checked');
-  };
-
+export const PlantTaskCard = ({ plant, handleTaskCheck }: IProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [careDetails, setCareDetails] = useState('none');
 
@@ -43,7 +40,10 @@ export const PlantTaskCard = ({ plant }: IProps) => {
             </div>
           </div>
           <div className={css.buttonContainer}>
-            <button onClick={handleTaskCheck} className={css.circleButton} />
+            <button
+              onClick={() => handleTaskCheck(plant._id)}
+              className={css.circleButton}
+            />
           </div>
         </div>
         {plant?.careInstructions && (
